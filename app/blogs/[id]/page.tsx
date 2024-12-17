@@ -3,12 +3,27 @@ import { BlogContent } from "@/components/blog/BlogContent";
 import Newsletter from "@/components/home/newsletter";
 import { getAllBlogIds, getBlogPost } from "@/lib/blog-data";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 export async function generateStaticParams() {
   const ids = getAllBlogIds();
   return ids.map((id) => ({
-    id: id,
+    id,
   }));
+}
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const post = getBlogPost(params.id);
+
+  if (!post) {
+    return {};
+  }
+
+  return {
+    title: post.title,
+    description: post.description,
+    // Add other metadata as needed
+  };
 }
 
 export default function BlogPost({ params }: { params: { id: string } }) {
@@ -25,7 +40,7 @@ export default function BlogPost({ params }: { params: { id: string } }) {
         <BlogContent post={post} />
       </div>
       <div className="py-4">
-        <Newsletter/>
+        <Newsletter />
       </div>
     </main>
   );
