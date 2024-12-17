@@ -1,0 +1,58 @@
+export const topProducts = [
+    {
+      id: 1,
+      name: "Industrial Generator X1000",
+      image: "https://images.unsplash.com/photo-1487875961445-47a00398c267?q=80&w=2070",
+      price: "$75,000",
+      description: "High-performance industrial generator with 1000kW output.",
+    },
+    {
+      id: 2,
+      name: "Commercial Generator C500",
+      image: "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?q=80&w=1974",
+      price: "$45,000",
+      description: "Reliable 500kW generator for commercial applications.",
+    },
+    {
+      id: 3,
+      name: "Smart Power Generator S750",
+      image: "https://images.unsplash.com/photo-1487875961445-47a00398c267?q=80&w=2070",
+      price: "$55,000",
+      description: "Advanced 750kW generator with smart monitoring.",
+    },
+    {
+      id: 4,
+      name: "Eco Generator E300",
+      image: "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=2080",
+      price: "$35,000",
+      description: "Environmentally friendly 300kW power solution.",
+    },
+    {
+        id: 5,
+        name: "Eco Generator E300",
+        image: "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=2080",
+        price: "$35,000",
+        description: "Environmentally friendly 300kW power solution.",
+      },
+      {
+        id: 6,
+        name: "Eco Generator E300",
+        image: "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=2080",
+        price: "$35,000",
+        description: "Environmentally friendly 300kW power solution.",
+      },
+      {
+        id: 7,
+        name: "Eco Generator E300",
+        image: "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=2080",
+        price: "$35,000",
+        description: "Environmentally friendly 300kW power solution.",
+      },
+      {
+        id: 8,
+        name: "Eco Generator E300",
+        image: "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=2080",
+        price: "$35,000",
+        description: "Environmentally friendly 300kW power solution.",
+      },
+  ];
