@@ -5,20 +5,29 @@ import blogData from '../../../components/blog/blog-posts.json';
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
-// Define params type for generateMetadata
-type Props = {
-  params: {
-    id: string;
-  };
-};
-
-export async function generateStaticParams() {
-  return blogData.posts.map((post) => ({
-    id: post.id.toString(),
-  }));
+// Define the structure of your blog post for better type safety
+interface BlogPost {
+  id: number;
+  title: string;
+  description: string;
+  content: string;
+  author: string;
+  category: string;
+  publishedAt: string;
+  readTime: string;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+// Correctly type the parameters
+interface PageParams {
+  id: string;
+}
+
+// Define the generateMetadata function with correct typing
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: PageParams 
+}): Promise<Metadata> {
   const post = blogData.posts.find(post => post.id.toString() === params.id);
 
   if (!post) {
@@ -31,7 +40,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function BlogPost({ params }: Props) {
+// Generate static params
+export async function generateStaticParams() {
+  return blogData.posts.map((post) => ({
+    id: post.id.toString(),
+  }));
+}
+
+// Page component with correct prop typing
+export default async function BlogPost({ 
+  params 
+}: { 
+  params: PageParams 
+}) {
   const post = blogData.posts.find(post => post.id.toString() === params.id);
 
   if (!post) {
