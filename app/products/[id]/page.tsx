@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,18 +11,22 @@ import {
 } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, Box, Gauge, Wrench, Zap } from "lucide-react";
+import { getProduct, generateProductStaticParams } from "@/lib/constants/product"
 
-import { getProduct,generateProductStaticParams } from "@/lib/constants/product";
-
-export function generateStaticParams(): { id: string }[] {
+export function generateStaticParams() {
   return generateProductStaticParams();
 }
 
+interface ProductPageProps {
+  params: {
+    id: string;
+  };
+}
 
-
-// Updated type for params
-export default function ProductPage({ params }: { params: { id: string } }) {
-  const product = getProduct(params.id);
+// Make the component async
+export default async function ProductPage({ params }: ProductPageProps) {
+  // Since we're using async/await, we need to wrap data fetching
+  const product = await getProduct(parseInt(params.id));
 
   if (!product) {
     return (
@@ -36,16 +39,11 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     );
   }
 
-  // Rest of the component remains the same as in the original code
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mx-1 md:mx-3">
       <div className="container py-8">
         {/* Back Button */}
-        <Button
-          variant="ghost"
-          asChild
-          className="mb-8"
-        >
+        <Button variant="ghost" asChild className="mb-8">
           <Link href="/products">
             <ChevronLeft className="mr-2 h-4 w-4" />
             Back to Products
@@ -55,11 +53,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         {/* Product Overview */}
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Image Gallery */}
-          <motion.div
-            initial={{ x: -20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className="space-y-4">
             <div className="relative aspect-square overflow-hidden rounded-lg">
               <Image
                 src={product.images[0]}
@@ -68,7 +62,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 className="object-cover"
               />
             </div>
-            <div className="mt-4 grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-4">
               {product.images.slice(1).map((image, index) => (
                 <div
                   key={index}
@@ -83,84 +77,73 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Product Info */}
-          <motion.div
-            initial={{ x: 20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <Badge>{product.category}</Badge>
-                <Badge variant="secondary">{product.power}</Badge>
-              </div>
-              <h1 className="text-3xl font-bold">{product.name}</h1>
-              <p className="text-2xl font-bold text-primary">{product.price}</p>
-              <p className="text-muted-foreground">{product.description}</p>
-
-              <div className="grid grid-cols-2 gap-4">
-                <Card>
-                  <CardContent className="flex items-center gap-2 p-4">
-                    <Box className="h-5 w-5 text-primary" />
-                    <div>
-                      <p className="text-sm font-medium">Dimensions</p>
-                      <p className="text-sm text-muted-foreground">
-                        {product.specifications.dimensions}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="flex items-center gap-2 p-4">
-                    <Gauge className="h-5 w-5 text-primary" />
-                    <div>
-                      <p className="text-sm font-medium">Weight</p>
-                      <p className="text-sm text-muted-foreground">
-                        {product.specifications.weight}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="flex items-center gap-2 p-4">
-                    <Zap className="h-5 w-5 text-primary" />
-                    <div>
-                      <p className="text-sm font-medium">Engine Type</p>
-                      <p className="text-sm text-muted-foreground">
-                        {product.specifications.engineType}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent className="flex items-center gap-2 p-4">
-                    <Wrench className="h-5 w-5 text-primary" />
-                    <div>
-                      <p className="text-sm font-medium">Starting System</p>
-                      <p className="text-sm text-muted-foreground">
-                        {product.specifications.startingSystem}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <Button size="lg" className="w-full">
-                Request Quote
-              </Button>
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <Badge>{product.category}</Badge>
+              <Badge variant="secondary">{product.power}</Badge>
             </div>
-          </motion.div>
+            <h1 className="text-3xl font-bold">{product.name}</h1>
+            <p className="text-2xl font-bold text-primary">{product.price}</p>
+            <p className="text-muted-foreground">{product.description}</p>
+
+            <div className="grid grid-cols-2 gap-4">
+              <Card>
+                <CardContent className="flex items-center gap-2 p-4">
+                  <Box className="h-5 w-5 text-primary" />
+                  <div>
+                    <p className="text-sm font-medium">Dimensions</p>
+                    <p className="text-sm text-muted-foreground">
+                      {product.specifications.dimensions}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="flex items-center gap-2 p-4">
+                  <Gauge className="h-5 w-5 text-primary" />
+                  <div>
+                    <p className="text-sm font-medium">Weight</p>
+                    <p className="text-sm text-muted-foreground">
+                      {product.specifications.weight}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="flex items-center gap-2 p-4">
+                  <Zap className="h-5 w-5 text-primary" />
+                  <div>
+                    <p className="text-sm font-medium">Engine Type</p>
+                    <p className="text-sm text-muted-foreground">
+                      {product.specifications.engineType}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="flex items-center gap-2 p-4">
+                  <Wrench className="h-5 w-5 text-primary" />
+                  <div>
+                    <p className="text-sm font-medium">Starting System</p>
+                    <p className="text-sm text-muted-foreground">
+                      {product.specifications.startingSystem}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Button size="lg" className="w-full">
+              Request Quote
+            </Button>
+          </div>
         </div>
 
         {/* Product Details Tabs */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="mt-12"
-        >
+        <div className="mt-12">
           <Tabs defaultValue="features">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="features">Features</TabsTrigger>
@@ -222,7 +205,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               </Card>
             </TabsContent>
           </Tabs>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

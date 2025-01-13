@@ -1,0 +1,178 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Industrial Generator X1000",
+        "category": "Industrial",
+        "power": "1000kW",
+        "price": "$75,000",
+        "description": "High-performance industrial generator for continuous power supply.",
+        "features": [
+          "Continuous Power Output: 1000kW",
+          "Voltage: 380-480V",
+          "Frequency: 50/60Hz",
+          "Fuel Type: Diesel",
+          "Noise Level: 75dB",
+          "Runtime: 24 hours"
+        ],
+        "specifications": {
+          "dimensions": "4.5m x 2.2m x 2.5m",
+          "weight": "8500 kg",
+          "fuelCapacity": "1000L",
+          "engineType": "V12 Diesel",
+          "coolingSystem": "Liquid Cooled",
+          "startingSystem": "Electric"
+        },
+        "images": [
+          "https://images.unsplash.com/photo-1487875961445-47a00398c267?q=80&w=2070",
+          "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?q=80&w=1974",
+          "https://images.unsplash.com/photo-1531345018406-58f5afd943c1?q=80&w=1974"
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Commercial Generator C500",
+        "category": "Commercial",
+        "power": "500kW",
+        "price": "$45,000",
+        "description": "Reliable commercial generator for medium-sized businesses.",
+        "features": [
+          "Continuous Power Output: 500kW",
+          "Voltage: 380-480V",
+          "Frequency: 50/60Hz",
+          "Fuel Type: Diesel",
+          "Noise Level: 70dB",
+          "Runtime: 18 hours"
+        ],
+        "specifications": {
+          "dimensions": "3.5m x 1.8m x 2.0m",
+          "weight": "5500 kg",
+          "fuelCapacity": "750L",
+          "engineType": "Inline 6 Diesel",
+          "coolingSystem": "Liquid Cooled",
+          "startingSystem": "Electric"
+        },
+        "images": [
+          "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?q=80&w=1974",
+          "https://images.unsplash.com/photo-1487875961445-47a00398c267?q=80&w=2070",
+          "https://images.unsplash.com/photo-1531345018406-58f5afd943c1?q=80&w=1974"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Industrial Generator X1000",
+        "category": "Industrial",
+        "power": "1000kW",
+        "price": "$75,000",
+        "description": "High-performance industrial generator for continuous power supply.",
+        "features": [
+          "Continuous Power Output: 1000kW",
+          "Voltage: 380-480V",
+          "Frequency: 50/60Hz",
+          "Fuel Type: Diesel",
+          "Noise Level: 75dB",
+          "Runtime: 24 hours"
+        ],
+        "specifications": {
+          "dimensions": "4.5m x 2.2m x 2.5m",
+          "weight": "8500 kg",
+          "fuelCapacity": "1000L",
+          "engineType": "V12 Diesel",
+          "coolingSystem": "Liquid Cooled",
+          "startingSystem": "Electric"
+        },
+        "images": [
+          "https://images.unsplash.com/photo-1487875961445-47a00398c267?q=80&w=2070",
+          "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?q=80&w=1974",
+          "https://images.unsplash.com/photo-1531345018406-58f5afd943c1?q=80&w=1974"
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Industrial Generator X1000",
+        "category": "Industrial",
+        "power": "1000kW",
+        "price": "$75,000",
+        "description": "High-performance industrial generator for continuous power supply.",
+        "features": [
+          "Continuous Power Output: 1000kW",
+          "Voltage: 380-480V",
+          "Frequency: 50/60Hz",
+          "Fuel Type: Diesel",
+          "Noise Level: 75dB",
+          "Runtime: 24 hours"
+        ],
+        "specifications": {
+          "dimensions": "4.5m x 2.2m x 2.5m",
+          "weight": "8500 kg",
+          "fuelCapacity": "1000L",
+          "engineType": "V12 Diesel",
+          "coolingSystem": "Liquid Cooled",
+          "startingSystem": "Electric"
+        },
+        "images": [
+          "https://images.unsplash.com/photo-1487875961445-47a00398c267?q=80&w=2070",
+          "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?q=80&w=1974",
+          "https://images.unsplash.com/photo-1531345018406-58f5afd943c1?q=80&w=1974"
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Industrial Generator X1000",
+        "category": "Industrial",
+        "power": "1000kW",
+        "price": "$75,000",
+        "description": "High-performance industrial generator for continuous power supply.",
+        "features": [
+          "Continuous Power Output: 1000kW",
+          "Voltage: 380-480V",
+          "Frequency: 50/60Hz",
+          "Fuel Type: Diesel",
+          "Noise Level: 75dB",
+          "Runtime: 24 hours"
+        ],
+        "specifications": {
+          "dimensions": "4.5m x 2.2m x 2.5m",
+          "weight": "8500 kg",
+          "fuelCapacity": "1000L",
+          "engineType": "V12 Diesel",
+          "coolingSystem": "Liquid Cooled",
+          "startingSystem": "Electric"
+        },
+        "images": [
+          "https://images.unsplash.com/photo-1487875961445-47a00398c267?q=80&w=2070",
+          "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?q=80&w=1974",
+          "https://images.unsplash.com/photo-1531345018406-58f5afd943c1?q=80&w=1974"
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Industrial Generator X1000",
+        "category": "Industrial",
+        "power": "1000kW",
+        "price": "$75,000",
+        "description": "High-performance industrial generator for continuous power supply.",
+        "features": [
+          "Continuous Power Output: 1000kW",
+          "Voltage: 380-480V",
+          "Frequency: 50/60Hz",
+          "Fuel Type: Diesel",
+          "Noise Level: 75dB",
+          "Runtime: 24 hours"
+        ],
+        "specifications": {
+          "dimensions": "4.5m x 2.2m x 2.5m",
+          "weight": "8500 kg",
+          "fuelCapacity": "1000L",
+          "engineType": "V12 Diesel",
+          "coolingSystem": "Liquid Cooled",
+          "startingSystem": "Electric"
+        },
+        "images": [
+          "https://images.unsplash.com/photo-1487875961445-47a00398c267?q=80&w=2070",
+          "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?q=80&w=1974",
+          "https://images.unsplash.com/photo-1531345018406-58f5afd943c1?q=80&w=1974"
+        ]
+      } 
+    ]
+  }

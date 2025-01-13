@@ -1,10 +1,22 @@
+// BlogContent.tsx
 "use client";
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import { Share2, Twitter } from "lucide-react";
-import { BlogPost } from "@/lib/blog-data";
+
+interface BlogPost {
+  id: number;
+  title: string;
+  description: string;
+  content: string;
+  image?: string;
+  author: string;
+  category: string;
+  publishedAt: string;
+  readTime: string;
+}
 
 interface BlogContentProps {
   post: BlogPost;
@@ -25,8 +37,9 @@ export function BlogContent({ post }: BlogContentProps) {
         className="mb-8"
       >
         <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-          <span>Published {post.publishedAt}</span>
+          <span>Published {new Date(post.publishedAt).toLocaleDateString()}</span>
           <span>By {post.author}</span>
+          <span>{post.readTime}</span>
           <span>in {post.category}</span>
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">

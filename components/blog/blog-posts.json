@@ -1,0 +1,75 @@
+{
+    "posts": [
+      {
+        "id": 1,
+        "title": "SEO Basics: Beginner's Guide to SEO Success",
+        "description": "Learn the fundamentals of SEO and how to improve your website's visibility in search engines.",
+        "content": "Understanding SEO basics is crucial for any online presence. Here's what you need to know:\n\nFirst, ensure your website is technically sound. This means having a clean structure, fast loading times, and mobile responsiveness.\n\nNext, focus on creating high-quality, relevant content that answers your audience's questions. Use appropriate keywords naturally throughout your content.\n\nFinally, build quality backlinks from reputable websites in your industry. This helps establish your site's authority and credibility.",
+        "image": "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+        "author": "Jese Leos",
+        "category": "SEO",
+        "publishedAt": "2024-01-10T14:30:00Z",
+        "readTime": "5 min read"
+      },
+      {
+        "id": 2,
+        "title": "How to quickly deploy a static website",
+        "description": "A step-by-step guide to deploying your static website using modern hosting platforms.",
+        "content": "Deploying a static website has never been easier. Here's a comprehensive guide:\n\nChoose a hosting platform that suits your needs. Popular options include Vercel, Netlify, and GitHub Pages.\n\nPrepare your website files and ensure all assets are optimized. This includes compressing images and minifying CSS/JavaScript.\n\nConnect your repository to your chosen hosting platform and configure your deployment settings. Most platforms offer automatic deployments when you push changes to your main branch.",
+        "author": "Sarah Johnson",
+        "category": "Development",
+        "publishedAt": "2024-01-09T10:15:00Z",
+        "readTime": "8 min read"
+      },
+      {
+        "id": 3,
+        "title": "How to Rank Higher on Google (6 Easy Steps)",
+        "description": "Practical strategies to improve your website's Google rankings and increase organic traffic.",
+        "content": "Want to improve your Google rankings? Follow these proven steps:\n\n1. Conduct thorough keyword research to understand what your target audience is searching for.\n\n2. Optimize your on-page elements including title tags, meta descriptions, and header tags.\n\n3. Create high-quality, engaging content that satisfies user intent.\n\n4. Build quality backlinks from authoritative websites.\n\n5. Improve your website's technical SEO.\n\n6. Monitor and analyze your performance using Google Analytics and Search Console.",
+        "author": "Mike Peters",
+        "category": "SEO",
+        "publishedAt": "2024-01-08T16:45:00Z",
+        "readTime": "10 min read"
+      },
+      {
+        "id": 4,
+        "title": "How to Rank Higher on Google (6 Easy Steps)",
+        "description": "Practical strategies to improve your website's Google rankings and increase organic traffic.",
+        "content": "Want to improve your Google rankings? Follow these proven steps:\n\n1. Conduct thorough keyword research to understand what your target audience is searching for.\n\n2. Optimize your on-page elements including title tags, meta descriptions, and header tags.\n\n3. Create high-quality, engaging content that satisfies user intent.\n\n4. Build quality backlinks from authoritative websites.\n\n5. Improve your website's technical SEO.\n\n6. Monitor and analyze your performance using Google Analytics and Search Console.",
+        "author": "Mike Peters",
+        "category": "SEO",
+        "publishedAt": "2024-01-08T16:45:00Z",
+        "readTime": "10 min read"
+      },
+      {
+        "id": 5,
+        "title": "How to Rank Higher on Google (6 Easy Steps)",
+        "description": "Practical strategies to improve your website's Google rankings and increase organic traffic.",
+        "content": "Want to improve your Google rankings? Follow these proven steps:\n\n1. Conduct thorough keyword research to understand what your target audience is searching for.\n\n2. Optimize your on-page elements including title tags, meta descriptions, and header tags.\n\n3. Create high-quality, engaging content that satisfies user intent.\n\n4. Build quality backlinks from authoritative websites.\n\n5. Improve your website's technical SEO.\n\n6. Monitor and analyze your performance using Google Analytics and Search Console.",
+        "author": "Mike Peters",
+        "category": "SEO",
+        "publishedAt": "2024-01-08T16:45:00Z",
+        "readTime": "10 min read"
+      },
+      {
+        "id": 6,
+        "title": "How to Rank Higher on Google (6 Easy Steps)",
+        "description": "Practical strategies to improve your website's Google rankings and increase organic traffic.",
+        "content": "Want to improve your Google rankings? Follow these proven steps:\n\n1. Conduct thorough keyword research to understand what your target audience is searching for.\n\n2. Optimize your on-page elements including title tags, meta descriptions, and header tags.\n\n3. Create high-quality, engaging content that satisfies user intent.\n\n4. Build quality backlinks from authoritative websites.\n\n5. Improve your website's technical SEO.\n\n6. Monitor and analyze your performance using Google Analytics and Search Console.",
+        "author": "Mike Peters",
+        "category": "SEO",
+        "publishedAt": "2024-01-08T16:45:00Z",
+        "readTime": "10 min read"
+      },
+      {
+        "id": 7,
+        "title": "How to Rank Higher on Google (6 Easy Steps)",
+        "description": "Practical strategies to improve your website's Google rankings and increase organic traffic.",
+        "content": "Want to improve your Google rankings? Follow these proven steps:\n\n1. Conduct thorough keyword research to understand what your target audience is searching for.\n\n2. Optimize your on-page elements including title tags, meta descriptions, and header tags.\n\n3. Create high-quality, engaging content that satisfies user intent.\n\n4. Build quality backlinks from authoritative websites.\n\n5. Improve your website's technical SEO.\n\n6. Monitor and analyze your performance using Google Analytics and Search Console.",
+        "author": "Mike Peters",
+        "category": "SEO",
+        "publishedAt": "2024-01-08T16:45:00Z",
+        "readTime": "10 min read"
+      }
+    ]
+  }

@@ -1,19 +1,19 @@
+// [id]/page.tsx
 import { BackButton } from "@/components/blog/BackButton";
 import { BlogContent } from "@/components/blog/BlogContent";
 import Newsletter from "@/components/home/newsletter";
-import { getAllBlogIds, getBlogPost } from "@/lib/blog-data";
+import blogData from '../../../components/blog/blog-posts.json';
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {
-  const ids = getAllBlogIds();
-  return ids.map((id) => ({
-    id,
+  return blogData.posts.map((post) => ({
+    id: post.id.toString(),
   }));
 }
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const post = getBlogPost(params.id);
+  const post = blogData.posts.find(post => post.id.toString() === params.id);
 
   if (!post) {
     return {};
@@ -22,12 +22,11 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   return {
     title: post.title,
     description: post.description,
-    // Add other metadata as needed
   };
 }
 
 export default function BlogPost({ params }: { params: { id: string } }) {
-  const post = getBlogPost(params.id);
+  const post = blogData.posts.find(post => post.id.toString() === params.id);
 
   if (!post) {
     notFound();
