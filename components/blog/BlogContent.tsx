@@ -5,18 +5,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import { Share2, Twitter } from "lucide-react";
-
-interface BlogPost {
-  id: number;
-  title: string;
-  description: string;
-  content: string;
-  image?: string;
-  author: string;
-  category: string;
-  publishedAt: string;
-  readTime: string;
-}
+import { BlogPost } from "./blog";
 
 interface BlogContentProps {
   post: BlogPost;

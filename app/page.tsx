@@ -175,7 +175,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="pb-4">
+      <section className="pb-4 mb-3">
         <Newsletter/>
       </section>
     </div>

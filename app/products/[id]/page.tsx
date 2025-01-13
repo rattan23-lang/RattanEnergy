@@ -40,7 +40,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="min-h-screen mx-1 md:mx-3">
+    <div className="min-h-screen mx-1 md:mx-3 md:my-3">
       <div className="container py-8">
         {/* Back Button */}
         <Button variant="ghost" asChild className="mb-8">
@@ -145,10 +145,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
         {/* Product Details Tabs */}
         <div className="mt-12">
           <Tabs defaultValue="features">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full  grid-cols-2">
               <TabsTrigger value="features">Features</TabsTrigger>
               <TabsTrigger value="specifications">Specifications</TabsTrigger>
-              <TabsTrigger value="documents">Documents</TabsTrigger>
+              
             </TabsList>
             <TabsContent value="features">
               <Card>
@@ -178,32 +178,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </CardContent>
               </Card>
             </TabsContent>
-            <TabsContent value="documents">
-              <Card>
-                <CardContent className="p-6">
-                  <ul className="space-y-4">
-                    <li>
-                      <Button variant="outline" className="w-full justify-start">
-                        <Box className="mr-2 h-4 w-4" />
-                        Product Manual.pdf
-                      </Button>
-                    </li>
-                    <li>
-                      <Button variant="outline" className="w-full justify-start">
-                        <Box className="mr-2 h-4 w-4" />
-                        Technical Specifications.pdf
-                      </Button>
-                    </li>
-                    <li>
-                      <Button variant="outline" className="w-full justify-start">
-                        <Box className="mr-2 h-4 w-4" />
-                        Warranty Information.pdf
-                      </Button>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </TabsContent>
+            
           </Tabs>
         </div>
       </div>
