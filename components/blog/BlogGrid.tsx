@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { BlogCard } from "./BlogCard";
-import blogData from './blog-posts.json';
+import blogData from '../../data/blog-posts.json';
 
 export function BlogGrid() {
   return (
