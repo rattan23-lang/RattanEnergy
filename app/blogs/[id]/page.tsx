@@ -33,8 +33,8 @@ interface PageProps {
     params: { id: string };
 }
 
+// The component should not be async
 export default function BlogPost({ params }: PageProps) {
-    // Find the post based on the id in params
     const post = (blogData as BlogData).posts.find(
         (post) => post.id === parseInt(params.id)
     );
@@ -55,6 +55,7 @@ export default function BlogPost({ params }: PageProps) {
     );
 }
 
+// Static Params generation
 export function generateStaticParams() {
     return (blogData as BlogData).posts.map((post) => ({
         id: post.id.toString(),
