@@ -24,10 +24,9 @@ interface ProductPageProps {
 }
 
 // Make the component async
-export default async function ProductPage({ params }: ProductPageProps) {
-  // Since we're using async/await, we need to wrap data fetching
-  const product =  getProduct(parseInt(params.id));
-
+export default async function ProductPage({ params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
+  const product = await getProduct(parseInt(params.id));
   if (!product) {
     return (
       <div className="container py-20 text-center">
