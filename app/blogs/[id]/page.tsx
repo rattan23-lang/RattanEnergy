@@ -1,5 +1,4 @@
 // app/blogs/[id]/page.tsx
-'use server';
 import { notFound } from "next/navigation";
 import { BackButton } from "@/components/blog/BackButton";
 import { BlogContent } from "@/components/blog/BlogContent";
@@ -34,13 +33,12 @@ interface PageProps {
     params: { id: string };
 }
 
-
-export default async function BlogPost({ params: paramsPromise }: PageProps) {
-    // Await params before using it
-    const params = await paramsPromise;
+export default function BlogPost({ params }: PageProps) {
+    // Find the post based on the id in params
     const post = (blogData as BlogData).posts.find(
         (post) => post.id === parseInt(params.id)
     );
+
     if (!post) {
         notFound();
     }
@@ -57,7 +55,7 @@ export default async function BlogPost({ params: paramsPromise }: PageProps) {
     );
 }
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
     return (blogData as BlogData).posts.map((post) => ({
         id: post.id.toString(),
     }));
