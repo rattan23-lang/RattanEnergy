@@ -34,11 +34,13 @@ interface PageProps {
     params: { id: string };
 }
 
-export default async function BlogPost({ params }: PageProps) {
-    const post = (blogData as BlogData).posts.find(
-        (post) => post.id 
-    );
 
+export default async function BlogPost({ params: paramsPromise }: PageProps) {
+    // Await params before using it
+    const params = await paramsPromise;
+    const post = (blogData as BlogData).posts.find(
+        (post) => post.id === parseInt(params.id)
+    );
     if (!post) {
         notFound();
     }
