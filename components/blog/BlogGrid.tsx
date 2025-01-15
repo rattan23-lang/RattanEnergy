@@ -4,6 +4,14 @@ import { motion } from "framer-motion";
 import { BlogCard } from "./BlogCard";
 import blogData from '../../app/blogs/blogs.json';
 
+// Function to convert title to URL-friendly slug
+const titleToSlug = (title: string) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+};
+
 export function BlogGrid() {
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-background">
@@ -31,7 +39,7 @@ export function BlogGrid() {
               title={post.title}
               description={post.description}
               image={post.image}
-              href={`/blogs/${post.id}`}
+              href={`/blogs/${titleToSlug(post.title)}`}
             />
           ))}
         </div>

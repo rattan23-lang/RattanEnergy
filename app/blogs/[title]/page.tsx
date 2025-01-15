@@ -1,4 +1,4 @@
-// app/blogs/[id]/page.tsx
+// app/blogs/[title]/page.tsx
 import { notFound } from "next/navigation";
 import { BackButton } from "@/components/blog/BackButton";
 import { BlogContent } from "@/components/blog/BlogContent";
@@ -21,22 +21,26 @@ interface BlogData {
     posts: BlogPost[];
 }
 
-const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    });
+// Create a function to convert title to URL-friendly slug
+const titleToSlug = (title: string) => {
+    return title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
 };
 
 interface PageProps {
-    params: { id: string };
+    params: { title: string };
 }
 
-// The component should not be async
-export default function BlogPost({ params }: PageProps) {
-    const post = (blogData as BlogData).posts.find(
-        (post) => post.id === parseInt(params.id)
+// Mark the component as async
+export default async function BlogPost({ params }: PageProps) {
+    // Await the params
+    const { title } = await params;
+
+    // Find the post based on the slugified title
+    const post = (blogData as BlogData).posts.find(post => 
+        titleToSlug(post.title) === title
     );
 
     if (!post) {
@@ -55,9 +59,9 @@ export default function BlogPost({ params }: PageProps) {
     );
 }
 
-// Static Params generation
-export function generateStaticParams() {
+// Generate static params
+export async function generateStaticParams() {
     return (blogData as BlogData).posts.map((post) => ({
-        id: post.id.toString(),
+        title: titleToSlug(post.title),
     }));
 }
