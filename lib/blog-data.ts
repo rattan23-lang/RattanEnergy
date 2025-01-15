@@ -12,10 +12,10 @@ export interface BlogPost {
   
   
   
-  export function getBlogPost(id: string): BlogPost | undefined {
-    return blogPosts.find(post => post.id === id);
-  }
+  // export function getBlogPost(id: string): BlogPost | undefined {
+  //   return blogPosts.find(post => post.id === id);
+  // }
   
-  export function getAllBlogIds(): string[] {
-    return blogPosts.map(post => post.id);
-  }
+  // export function getAllBlogIds(): string[] {
+  //   return blogPosts.map(post => post.id);
+  // }
