@@ -1,7 +1,7 @@
 "use client";
 
 import { motion ,useInView } from "framer-motion";
-import { react, useRef } from "react";
+import { useRef } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
