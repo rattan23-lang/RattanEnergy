@@ -1,7 +1,7 @@
 "use client";
 
 import { motion ,useInView } from "framer-motion";
-import { useRef } from "react";
+import { react, useRef } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -119,8 +119,8 @@ const formItem = {
 };
 
 export default function DealershipPage() {
-  const formRef = useRef(null);
-  const isFormInView = useInView(formRef, { once: true, amount: 0.2 });
+  const formRef = useRef<HTMLDivElement>(null);
+  const isFormInView = useInView(formRef as React.RefObject<HTMLDivElement>, { once: true, amount: 0.2 });
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
