@@ -1,10 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type HTMLMotionProps, type MotionProps } from "framer-motion";
 import Image from "next/image";
 import { StatsSection } from "@/components/about/stats-section";
 import { StorySection } from "@/components/about/story-section";
 import { TeamSection } from "@/components/about/team-section";
+
+// Create properly typed motion components
+const MotionH1 = motion.h1 as React.FC<HTMLMotionProps<"h1">>;
+const MotionP = motion.p as React.FC<HTMLMotionProps<"p">>;
 
 export default function AboutPage() {
   return (
@@ -19,22 +23,26 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 flex items-center justify-center text-white">
           <div className="text-center">
-            <motion.h1
-              className="mb-4 text-5xl font-bold"
+            <div className="mb-4 text-5xl font-bold">
+            <MotionH1
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
+              
             >
               About Rattan Energy
-            </motion.h1>
-            <motion.p
-              className="text-xl"
+            </MotionH1>
+            </div>
+            <div className="text-xl">
+            <MotionP
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
+              
             >
               Powering Progress Since 1995
-            </motion.p>
+            </MotionP>
+            </div>
           </div>
         </div>
       </section>
