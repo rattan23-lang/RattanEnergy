@@ -26,6 +26,7 @@ import {
 import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
+import axios from "axios";
 
 const formSchema = z.object({
   businessName: z.string().min(2, "Business name must be at least 2 characters"),
@@ -135,11 +136,22 @@ export default function DealershipPage() {
       investment: "",
     },
   });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    toast.success("Application submitted successfully!");
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const response = await axios.post("https://sheetdb.io/api/v1/nqfxbv2jox06z", values);
+      if (response.status === 201) {
+        toast.success("Details have been shared . Our team will get back to you soon!");
+        form.reset();
+      } else {
+        toast.error("Failed to submit application. Please try again later.");
+      }
+    } catch (error) {
+      toast.error("An error occurred while submitting the application.");
+      console.error("Error submitting form:", error);
+    }
   }
+
+  
 
   return (
     <div className="min-h-screen">

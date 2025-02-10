@@ -4,11 +4,12 @@ import { notFound } from "next/navigation";
 import { BackButton } from "@/components/blog/BackButton";
 import { BlogContent } from "@/components/blog/BlogContent";
 import Newsletter from "@/components/home/newsletter";
-import blogData from '../blogs.json';
+// import blogData from '../blogs.json';
+import { fetchBlogPosts } from "@/lib/api";
 
 // Explicitly type the params according to Next.js structure
 interface Props {
-  params: Promise<{ title: string }>;
+  params: { title: string };
 }
 
 // Function to convert title to URL-friendly slug
@@ -21,10 +22,10 @@ const titleToSlug = (title: string) => {
 
 // Mark the component as async and use the correct Props type
 export default async function BlogPost({ params }: Props) {
-  // Await the params to get the title
-  const { title } = await params;
-
-  const post = blogData.posts.find(post => 
+  const { title } = params;
+  
+  const posts = await fetchBlogPosts();
+  const post = posts.find(post => 
     titleToSlug(post.title) === title
   );
 
@@ -46,15 +47,16 @@ export default async function BlogPost({ params }: Props) {
 
 // Type for metadata params
 interface MetadataProps {
-  params: Promise<{ title: string }>;
+  params: { title: string };
 }
 
 // Generate metadata with correct typing
 export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
-  const { title } = await params;
+  const decodedTitle = decodeURIComponent(params.title);
   
-  const post = blogData.posts.find(post => 
-    titleToSlug(post.title) === title
+  const posts = await fetchBlogPosts();
+  const post = posts.find(post => 
+    titleToSlug(post.title) === decodedTitle
   );
 
   if (!post) {
@@ -71,8 +73,15 @@ export async function generateMetadata({ params }: MetadataProps): Promise<Metad
 }
 
 // Generate static params
-export function generateStaticParams() {
-  return blogData.posts.map((post) => ({
-    title: titleToSlug(post.title),
-  }));
+export async function generateStaticParams() {
+  try {
+    const posts = await fetchBlogPosts();
+    
+    return posts.map((post) => ({
+      title: titleToSlug(post.title),
+    }));
+  } catch (error) {
+    console.error('Error generating static params:', error);
+    return [];
+  }
 }

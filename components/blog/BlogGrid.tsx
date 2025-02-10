@@ -1,10 +1,16 @@
+// components/blog/BlogGrid.tsx
 "use client";
 
 import { motion } from "framer-motion";
 import { BlogCard } from "./BlogCard";
-import blogData from '../../app/blogs/blogs.json';
+import { BlogPost } from "@/types/blog";
+import { useState, useEffect } from "react";
+import { Spinner } from "@/components/ui/spinner";
 
-// Function to convert title to URL-friendly slug
+interface BlogGridProps {
+  initialPosts: BlogPost[];
+}
+
 const titleToSlug = (title: string) => {
   return title
     .toLowerCase()
@@ -12,7 +18,21 @@ const titleToSlug = (title: string) => {
     .replace(/(^-|-$)/g, '');
 };
 
-export function BlogGrid() {
+export function BlogGrid({ initialPosts }: BlogGridProps) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [posts, setPosts] = useState<BlogPost[]>(initialPosts);
+
+  useEffect(() => {
+    if (initialPosts) {
+      setPosts(initialPosts);
+      setIsLoading(false);
+    }
+  }, [initialPosts]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-background">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -32,7 +52,7 @@ export function BlogGrid() {
         </motion.div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {blogData.posts.map((post, index) => (
+          {posts.map((post, index) => (
             <BlogCard
               key={post.id}
               index={index}
@@ -42,6 +62,7 @@ export function BlogGrid() {
               href={`/blogs/${titleToSlug(post.title)}`}
             />
           ))}
+          
         </div>
       </div>
     </section>

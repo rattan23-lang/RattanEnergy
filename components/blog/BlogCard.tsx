@@ -1,9 +1,10 @@
 "use client";
-
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Link from "next/link";
 import Image from "next/image";
+import { getImageUrl } from "@/utils/imageUrl";
 import { ArrowRight } from "lucide-react";
 
 interface BlogCardProps {
@@ -15,11 +16,32 @@ interface BlogCardProps {
 }
 
 export function BlogCard({ title, description, image, index, href }: BlogCardProps) {
+  const [imageError, setImageError] = useState(false);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
+  {console.log('img', image)}
+  // Handle Google Drive image URLs and ensure proper error handling
+  const getGoogleDriveImageUrl = (url: string) => {
+    if (!url) return '';
+    
+    // Check if already in correct format
+    if (url.includes('uc?export=view')) {
+      return url;
+    }
 
+    // Extract file ID if in standard sharing format
+    const fileIdMatch = url.match(/\/d\/(.*?)\//) || url.match(/id=(.*?)(&|$)/);
+    if (fileIdMatch) {
+      return `https://drive.google.com/uc?export=view&id=${fileIdMatch[1]}`;
+    }
+
+    return url;
+  };
+
+  // Transform image URL if needed
+  const processedImageUrl = image ? getGoogleDriveImageUrl(image) : '';
   const variants = {
     hidden: { 
       opacity: 0,
@@ -45,16 +67,19 @@ export function BlogCard({ title, description, image, index, href }: BlogCardPro
       variants={variants}
       className="group relative flex flex-col overflow-hidden rounded-lg bg-card hover:shadow-lg transition-shadow duration-300"
     >
-      {image && (
-        <div className="relative h-48 w-full overflow-hidden">
+    {image && !imageError && (
+        <div className="relative h-48 w-full overflow-hidden bg-muted">
           <Image
-            src={image}
+            src={getImageUrl(image)}
             alt={title}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
+            onError={() => setImageError(true)}
+            unoptimized 
           />
         </div>
       )}
+      
       <div className="flex flex-1 flex-col justify-between p-6">
         <div className="flex-1">
           <h3 className="text-xl font-semibold text-foreground mb-2">

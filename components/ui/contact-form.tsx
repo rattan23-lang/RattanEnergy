@@ -17,11 +17,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import axios from "axios";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
-  subject: z.string().min(5, "Subject must be at least 5 characters"),
+  phone: z.string().min(5, "Number must be at least 8 characters"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
@@ -39,10 +40,10 @@ const formFields = [
     type: "email",
   },
   {
-    name: "subject",
-    label: "Subject",
-    placeholder: "How can we help?",
-    type: "text",
+    name: "phone",
+    label: "Phone",
+    placeholder: "Enter your contact number",
+    type: "number",
   },
   {
     name: "message",
@@ -85,14 +86,25 @@ export function ContactForm() {
     defaultValues: {
       name: "",
       email: "",
-      subject: "",
+      phone: "",
       message: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    toast.success("Message sent successfully!");
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const response = await axios.post("https://sheetdb.io/api/v1/6zfdxem3iwgu2", values);
+      // console.log(response.data)
+      if (response.status === 201) {
+        toast.success("Details Submitted sucessfully. Our team member will contact you soon!");
+        form.reset();
+      } else {
+        toast.error("Failed to send message. Please try again after some time.");
+      }
+    } catch (error) {
+      toast.error("An error occurred while sending the message.");
+      console.error("Error submitting form:", error);
+    }
   }
 
   return (

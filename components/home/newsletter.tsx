@@ -57,7 +57,7 @@ const Newsletter = () => {
         </motion.button>
       </div>
       <p className="text-white mt-4">
-        We care about the protection of your data. <a href="#" className="text-secondary">Read our Privacy Policy.</a>
+        We care about the protection of your data. <a href="/privacypolicy" className="text-secondary">Read our Privacy Policy.</a>
       </p>
     </motion.div>
   );

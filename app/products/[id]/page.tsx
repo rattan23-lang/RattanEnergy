@@ -48,7 +48,25 @@ export default async function ProductPage({ params: paramsPromise }: { params: P
             Back to Products
           </Link>
         </Button>
+        {/* blog api ->
+// https://docs.google.com/spreadsheets/d/1lBjDt0GoU2hGlJWucrOnxkqRRajVKQx2WIe8zAJzbdk/edit?gid=0#gid=0 
+// https://script.google.com/macros/s/AKfycbxa1eJHRfpmdP5UgSN_T3aqMxd-Q5CjN4ry6O6W8HWs8eEn21nTMTElvcK3tfrtxBaY/exec
+dealr:
+https://docs.google.com/spreadsheets/d/1wr7ICCKZ8jMfv-EANEU2FYpVFMBbqNew3O23DtYWZhk/edit?usp=sharing
+inter: https://sheetdb.io/api/v1/nqfxbv2jox06z
+// Product api->
+https://docs.google.com/spreadsheets/d/12M8neYZlJnX54GWdztzb6seysL_heL6yRCTevCeoz-g/edit?usp=sharing
+// https://script.google.com/macros/s/AKfycbzOhAx-8VP4wKAJXJyi2_g7m4aY4EjD59A7e1hk0ikKQVcMqqCU0vvUPZqAP53dKhkx/exec
+// deployment ID= AKfycbzOhAx-8VP4wKAJXJyi2_g7m4aY4EjD59A7e1hk0ikKQVcMqqCU0vvUPZqAP53dKhkx
 
+ctc:https://docs.google.com/spreadsheets/d/1TK-izEvP-qrKkbXrW_3hnkeSUOwj_m1f89qUfksJKgM/edit?usp=sharing
+https://sheetdb.io/api/v1/6zfdxem3iwgu2
+
+// contactrattanergyindia@gmail.com
+// Rahul9814@
+// dealershiprattanenergyindia@gmail.com
+// Rattan9814@
+// rattandealer758@gmail.com */}
         {/* Product Overview */}
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Image Gallery */}
