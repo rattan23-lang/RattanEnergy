@@ -55,22 +55,19 @@ export function BlogContent({ post }: BlogContentProps) {
             );
         });
     };
-{console.log('image', post.image)}
+
     // Function to handle direct Google Drive URLs
     const getImageUrl = (url: string) => {
         if (!url) return '';
         
-        // If it's already a direct view URL, use it
-        if (url.includes('export=view')) {
-            return url;
-        }
-
-
-        // Extract ID and create direct URL
+        // Extract the file ID from the Google Drive URL
         const idMatch = url.match(/[-\w]{25,}/);
-        return idMatch 
-            ? `https://drive.google.com/uc?export=view&id=${idMatch[0]}`
-            : url;
+        if (!idMatch) return url;
+        
+        const fileId = idMatch[0];
+        
+        // Return the more reliable Google Photos CDN URL
+        return `https://lh3.googleusercontent.com/d/${fileId}`;
     };
 
     return (
@@ -122,12 +119,13 @@ export function BlogContent({ post }: BlogContentProps) {
             {post.image && (
                 <div className="relative h-[400px] mb-8 rounded-lg overflow-hidden">
                     <Image
-                        src={post.image}
+                        src={getImageUrl(post.image)}
                         alt={post.title}
                         className="absolute inset-0 w-full h-full object-cover"
                         loading="lazy"
-                        width={300}
-                        height={100}
+                        width={800}
+                        height={400}
+                        unoptimized
                     />
                 </div>
             )}

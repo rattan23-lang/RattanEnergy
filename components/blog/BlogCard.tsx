@@ -21,27 +21,23 @@ export function BlogCard({ title, description, image, index, href }: BlogCardPro
     triggerOnce: true,
     threshold: 0.2,
   });
-  {console.log('img', image)}
+  // {console.log('img', image)}
   // Handle Google Drive image URLs and ensure proper error handling
-  const getGoogleDriveImageUrl = (url: string) => {
+  const getImageUrl = (url: string) => {
     if (!url) return '';
     
-    // Check if already in correct format
-    if (url.includes('uc?export=view')) {
-      return url;
-    }
-
-    // Extract file ID if in standard sharing format
-    const fileIdMatch = url.match(/\/d\/(.*?)\//) || url.match(/id=(.*?)(&|$)/);
-    if (fileIdMatch) {
-      return `https://drive.google.com/uc?export=view&id=${fileIdMatch[1]}`;
-    }
-
-    return url;
-  };
+    // Extract the file ID from the Google Drive URL
+    const idMatch = url.match(/[-\w]{25,}/);
+    if (!idMatch) return url;
+    
+    const fileId = idMatch[0];
+    
+    // Return the more reliable Google Photos CDN URL
+    return `https://lh3.googleusercontent.com/d/${fileId}`;
+};
 
   // Transform image URL if needed
-  const processedImageUrl = image ? getGoogleDriveImageUrl(image) : '';
+  const processedImageUrl = image ? getImageUrl(image) : '';
   const variants = {
     hidden: { 
       opacity: 0,
