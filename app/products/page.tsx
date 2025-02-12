@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,12 +13,43 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { getAllProducts } from "@/lib/constants/product";
+import { Product } from "@/lib/productapi";
+import { fetchProducts } from "@/lib/productapi";
+import { Spinner } from "@/components/ui/spinner";
 
-
+function getImageUrl(url: string) {
+  if (!url) return '';
+  
+  const idMatch = url.match(/[-\w]{25,}/);
+  if (!idMatch) return url;
+  
+  const fileId = idMatch[0];
+  return `https://lh3.googleusercontent.com/d/${fileId}`;
+}
 
 export default function ProductsPage() {
-  const products = getAllProducts();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const data = await fetchProducts();
+        setProducts(data);
+      } catch (error) {
+        console.error('Error loading products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, []);
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center"><Spinner/></div>;
+  }
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -100,10 +132,11 @@ export default function ProductsPage() {
           <Card className="h-full w-full max-w-[300px]">
             <div className="relative aspect-square overflow-hidden">
               <Image
-                src={product.images[0]}
+                src={getImageUrl(product.images[0])}
                 alt={product.name}
                 fill
                 className="object-cover transition-transform duration-300 hover:scale-105"
+                unoptimized
               />
             </div>
             <CardContent className="p-6">

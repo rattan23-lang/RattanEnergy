@@ -11,22 +11,33 @@ import {
 } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, Box, Gauge, Wrench, Zap } from "lucide-react";
-import { getProduct, generateProductStaticParams } from "@/lib/constants/product"
+import { getProduct, generateProductStaticParams } from "@/lib/productapi";
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return generateProductStaticParams();
 }
 
-interface ProductPageProps {
-  params: {
-    id: string;
-  };
+interface PageProps {
+  params: Promise<{ id: string }>;
 }
 
-// Make the component async
-export default async function ProductPage({ params: paramsPromise }: { params: Promise<{ id: string }> }) {
+function getImageUrl(url: string) {
+  if (!url) return '';
+  
+  // Extract the file ID from various possible Google Drive URL formats
+  const idMatch = url.match(/[-\w]{25,}/);
+  if (!idMatch) return url;
+  
+  const fileId = idMatch[0];
+  // Use the same Google Photos CDN URL format as blogs
+  return `https://lh3.googleusercontent.com/d/${fileId}`;
+}
+
+export default async function ProductPage({ params: paramsPromise }: PageProps) {
   const params = await paramsPromise;
-  const product = await getProduct(parseInt(params.id));
+  const productId = parseInt(params.id);
+  const product = await getProduct(productId);
+
   if (!product) {
     return (
       <div className="container py-20 text-center">
@@ -73,10 +84,11 @@ https://sheetdb.io/api/v1/6zfdxem3iwgu2
           <div className="space-y-4">
             <div className="relative aspect-square overflow-hidden rounded-lg">
               <Image
-                src={product.images[0]}
+                src={getImageUrl(product.images[0])}
                 alt={product.name}
                 fill
                 className="object-cover"
+                unoptimized
               />
             </div>
             <div className="grid grid-cols-3 gap-4">
@@ -86,10 +98,11 @@ https://sheetdb.io/api/v1/6zfdxem3iwgu2
                   className="relative aspect-square overflow-hidden rounded-lg"
                 >
                   <Image
-                    src={image}
+                    src={getImageUrl(image)}
                     alt={`${product.name} view ${index + 2}`}
                     fill
                     className="object-cover"
+                    unoptimized
                   />
                 </div>
               ))}
@@ -106,52 +119,26 @@ https://sheetdb.io/api/v1/6zfdxem3iwgu2
             <p className="text-2xl font-bold text-primary">{product.price}</p>
             <p className="text-muted-foreground">{product.description}</p>
 
-            <div className="grid grid-cols-2 gap-4">
-              <Card>
-                <CardContent className="flex items-center gap-2 p-4">
-                  <Box className="h-5 w-5 text-primary" />
-                  <div>
-                    <p className="text-sm font-medium">Dimensions</p>
-                    <p className="text-sm text-muted-foreground">
-                      {product.specifications.dimensions}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="flex items-center gap-2 p-4">
-                  <Gauge className="h-5 w-5 text-primary" />
-                  <div>
-                    <p className="text-sm font-medium">Weight</p>
-                    <p className="text-sm text-muted-foreground">
-                      {product.specifications.weight}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="flex items-center gap-2 p-4">
-                  <Zap className="h-5 w-5 text-primary" />
-                  <div>
-                    <p className="text-sm font-medium">Engine Type</p>
-                    <p className="text-sm text-muted-foreground">
-                      {product.specifications.engineType}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="flex items-center gap-2 p-4">
-                  <Wrench className="h-5 w-5 text-primary" />
-                  <div>
-                    <p className="text-sm font-medium">Starting System</p>
-                    <p className="text-sm text-muted-foreground">
-                      {product.specifications.startingSystem}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+            {/* Features section */}
+            <div className="mt-6">
+              <h2 className="text-xl font-semibold mb-4">Features</h2>
+              <ul className="grid gap-2">
+                {product.features.map((feature, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-primary" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
             </div>
+
+            {/* Specification if available */}
+            {product.specification && (
+              <div className="mt-6">
+                <h2 className="text-xl font-semibold mb-4">Specification</h2>
+                <p className="text-muted-foreground">{product.specification}</p>
+              </div>
+            )}
 
             <Button size="lg" className="w-full">
               Request Quote
@@ -185,7 +172,7 @@ https://sheetdb.io/api/v1/6zfdxem3iwgu2
               <Card>
                 <CardContent className="p-6">
                   <dl className="grid gap-4 sm:grid-cols-2">
-                    {Object.entries(product.specifications).map(([key, value]) => (
+                    {Object.entries(product.specification).map(([key, value]) => (
                       <div key={key}>
                         <dt className="font-medium">{key}</dt>
                         <dd className="text-muted-foreground">{value}</dd>
