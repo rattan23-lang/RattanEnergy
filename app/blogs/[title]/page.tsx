@@ -7,9 +7,9 @@ import Newsletter from "@/components/home/newsletter";
 // import blogData from '../blogs.json';
 import { fetchBlogPosts } from "@/lib/api";
 
-// Explicitly type the params according to Next.js structure
+// Update the Props interface to use Promise
 interface Props {
-  params: { title: string };
+  params: Promise<{ title: string }>;
 }
 
 // Function to convert title to URL-friendly slug
@@ -20,8 +20,9 @@ const titleToSlug = (title: string) => {
     .replace(/(^-|-$)/g, '');
 };
 
-// Mark the component as async and use the correct Props type
-export default async function BlogPost({ params }: Props) {
+// Update the component to await params
+export default async function BlogPost({ params: paramsPromise }: Props) {
+  const params = await paramsPromise;
   const { title } = params;
   
   const posts = await fetchBlogPosts();
@@ -45,13 +46,14 @@ export default async function BlogPost({ params }: Props) {
   );
 }
 
-// Type for metadata params
+// Update MetadataProps interface
 interface MetadataProps {
-  params: { title: string };
+  params: Promise<{ title: string }>;
 }
 
-// Generate metadata with correct typing
-export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
+// Update generateMetadata to await params
+export async function generateMetadata({ params: paramsPromise }: MetadataProps): Promise<Metadata> {
+  const params = await paramsPromise;
   const decodedTitle = decodeURIComponent(params.title);
   
   const posts = await fetchBlogPosts();
