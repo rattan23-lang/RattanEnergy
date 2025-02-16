@@ -14,19 +14,15 @@ import Newsletter from "@/components/home/newsletter";
 
 const productCategories = [
   {
-    title: "Industrial Generators",
-    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=2070",
-    description: "High-capacity power generation for industrial applications",
-  },
-  {
     title: "Commercial Generators",
-    image: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=2070",
-    description: "Reliable backup power for businesses",
+    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=2070",
+    description: "Reliable power solutions for businesses and industries.",
   },
+  
   {
-    title: "Portable Solutions",
+    title: "Residential Generators",
     image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070",
-    description: "Mobile power generation units",
+    description: "Uninterrupted backup power for your home’s comfort.",
   },
 ];
 
@@ -90,8 +86,7 @@ export default function Home() {
           >
             <h2 className="mb-4 text-3xl font-bold">About Rattan Energy</h2>
             <p className="mx-auto max-w-2xl text-muted-foreground">
-              With over 5+ years of experience, Rattan energy has been at the forefront of industrial power generation solutions.
-              Our commitment to quality, innovation, and customer satisfaction makes us the preferred choice for businesses worldwide.
+            At Rattan Energy, we are committed to delivering top-quality generators in commercial as well as residential sector across India. With a strong focus on performance, durability, and innovation, we provide power solutions that keep your world running without interruption. <br />From sales to expert installation, maintenance, and repairs, our team ensures you get the best service and support. Whether for commercial or residential use, we help you find the perfect generator to match your needs. Reliable power starts here! ⚡
             </p>
           </motion.div>
         </div>
@@ -101,7 +96,7 @@ export default function Home() {
       <section className="bg-muted py-20">
         <div className="container mx-auto max-w-[1400px] px-8">
           <h2 className="mb-12 text-center text-3xl font-bold">Our Solutions</h2>
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2">
             {productCategories.map((category, index) => (
               <motion.div
                 key={index}

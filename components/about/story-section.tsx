@@ -15,17 +15,16 @@ export function StorySection() {
             transition={{ duration: 0.5 }}
             className="text-center md:text-left"
           >
-            <h2 className="mb-6 text-3xl font-bold">Our Story</h2>
+            <h2 className="mb-6 text-3xl font-bold">Our Journey Towards Reliable Power</h2>
             <div className="space-y-4 text-muted-foreground">
+          
               <p>
-                Founded in 1995, Rattanenergy began with a simple mission: to provide reliable power solutions for businesses worldwide. What started as a small workshop has grown into a global leader in industrial power generation.
-              </p>
+              Founded in Chandigarh, Rattan Energy has been a trusted name in power solutions, offering a wide range of Honda and Rattan Energy generators. Our mission is simple—to provide reliable, efficient, and cost-effective energy solutions across India.              </p>
               <p>
-                Over five decades, we&apos;ve continuously innovated and expanded our capabilities, adapting to changing market needs while maintaining our commitment to quality and reliability.
-              </p>
+              With years of industry expertise, our team is passionate about helping customers find the right generator, whether for commercial or residential use. We offer new and pre-used models, equipped with advanced inverter technology, noise-reducing mufflers, and fuel efficiency features.              </p>
               <p>
-                Today, we&apos;re proud to be at the forefront of sustainable power generation, combining traditional expertise with cutting-edge technology to serve our clients better.
-              </p>
+              Beyond sales, we provide expert installation, maintenance, and repair services, ensuring long-lasting performance. At Rattan Energy, we believe in quality, innovation, and customer satisfaction, making us a trusted partner for all your power needs.              </p>
+              <p>Let us keep your world running—efficiently and uninterrupted. ⚡</p>
             </div>
           </motion.div>
           <motion.div
