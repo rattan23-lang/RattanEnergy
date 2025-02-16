@@ -8,22 +8,22 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    content: "(555) 123-4567",
+    content: "+91-7888733548",
   },
   {
     icon: Mail,
     title: "Email",
-    content: "info@agenerator.com",
+    content: "RattanEnergyindia@gmail.com",
   },
   {
     icon: MapPin,
     title: "Address",
-    content: "123 Industrial Ave, Power City, PC 12345",
+    content: "Rattan Avenue, Sector 23, Chandigarh",
   },
   {
     icon: Clock,
     title: "Business Hours",
-    content: "Mon-Fri: 8AM-6PM, Sat: 9AM-2PM",
+    content: "Mon-Sat: 9AM-7PM, Sun: 9AM-1PM",
   },
 ];
 
@@ -63,7 +63,7 @@ export function ContactInfoSection() {
         >
           <h1 className="mb-4 text-4xl font-bold">Contact Us</h1>
           <p className="mx-auto mb-12 max-w-2xl text-muted-foreground">
-            Have questions? We're here to help. Reach out to us through any of
+            Have questions? We&apos;re here to help. Reach out to us through any of
             the channels below or fill out the contact form.
           </p>
         </motion.div>

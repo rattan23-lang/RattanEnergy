@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Power } from "lucide-react";
+import logoImg from "@/image/logo.png";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -8,11 +9,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 text-center sm:grid-cols-2 md:grid-cols-4">
           <div className="flex flex-col items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <Power className="h-6 w-6 text-primary" />
+            <Image
+            src={logoImg} 
+            alt="RattanEnergy" 
+            className="h-16 w-16" 
+            width={300} 
+            height={200}
+            priority
+          />
               <span className="text-xl font-bold">Rattan Energy</span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
-              Leading manufacturer of industrial generators and machinery solutions since 1970.
+              Leading manufacturer of industrial generators and machinery solutions since 1995.
             </p>
           </div>
           <div className="flex flex-col items-center">
@@ -27,18 +35,18 @@ export default function Footer() {
           <div className="flex flex-col items-center">
             <h3 className="text-lg font-semibold">Contact</h3>
             <ul className="mt-4 space-y-2">
-              <li className="text-sm text-muted-foreground">123 Industrial Ave</li>
-              <li className="text-sm text-muted-foreground">Power City, PC 12345</li>
-              <li className="text-sm text-muted-foreground">Phone: (555) 123-4567</li>
-              <li className="text-sm text-muted-foreground">Email: info@agenerator.com</li>
+              <li className="text-sm text-muted-foreground">Rattan Avenue</li>
+              <li className="text-sm text-muted-foreground">Sector 23, Chandigarh</li>
+              <li className="text-sm text-muted-foreground">Phone: +91-7888733548</li>
+              <li className="text-sm text-muted-foreground">Email: RattanEnergyindia@gmail.com</li>
             </ul>
           </div>
           <div className="flex flex-col items-center">
             <h3 className="text-lg font-semibold">Business Hours</h3>
             <ul className="mt-4 space-y-2">
-              <li className="text-sm text-muted-foreground">Monday - Friday: 8:00 AM - 6:00 PM</li>
-              <li className="text-sm text-muted-foreground">Saturday: 9:00 AM - 2:00 PM</li>
-              <li className="text-sm text-muted-foreground">Sunday: Closed</li>
+              <li className="text-sm text-muted-foreground">Monday - Saturday: 9:00 AM - 7:00 PM</li>
+              <li className="text-sm text-muted-foreground">Sunday: 9:00 AM - 1:00 PM</li>
+              <li className="text-sm text-muted-foreground"></li>
             </ul>
           </div>
         </div>

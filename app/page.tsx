@@ -135,9 +135,9 @@ export default function Home() {
         </div>
       </section>
 
-     <section>
+     {/* <section>
       <TopProductsSection/>
-     </section>
+     </section> */}
      
       {/* Testimonials */}
       <section className="py-20">

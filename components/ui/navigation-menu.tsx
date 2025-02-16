@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { cva } from 'class-variance-authority';
 import { ChevronDown } from 'lucide-react';
+import Image from "next/image";
+import Link from "next/link";
 
 import { cn } from '@/lib/utils';
 
@@ -126,3 +128,34 @@ export {
   NavigationMenuIndicator,
   NavigationMenuViewport,
 };
+
+export function NavigationMenuDemo() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <Link href="/" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <Image
+                src="/rattan-logo.png"
+                alt="Rattan Logo"
+                width={100}
+                height={50}
+                className="mr-4"
+                priority
+              />
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <Link href="/" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Home
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}

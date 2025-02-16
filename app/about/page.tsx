@@ -49,7 +49,7 @@ export default function AboutPage() {
 
       <StatsSection />
       <StorySection />
-      <TeamSection />
+      {/* <TeamSection /> */}
     </div>
   );
 }

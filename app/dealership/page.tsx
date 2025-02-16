@@ -329,7 +329,7 @@ export default function DealershipPage() {
                       />
                     </motion.div>
 
-                    <motion.div variants={formItem}>
+                    {/* <motion.div variants={formItem}>
                       <FormField
                         control={form.control}
                         name="experience"
@@ -373,7 +373,7 @@ export default function DealershipPage() {
                           </FormItem>
                         )}
                       />
-                    </motion.div>
+                    </motion.div> */}
 
                     <motion.div variants={formItem}>
                       <Button type="submit" className="w-full">Submit Application</Button>
