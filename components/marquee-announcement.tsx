@@ -11,7 +11,7 @@ export default function MarqueeAnnouncement() {
       <span className="mx-4">|</span>
       <span className="mx-4">🌟 Portable Powerful</span>
       <span className="mx-4">|</span>
-      <span className="mx-4"> ✆ Call us now @ +91-7888733548 and get excellent deals</span>
+      <span className="mx-4"> ✆ Call us now @ +91-7888733548 to get exciting deals</span>
     </Marquee>
   );
 }
