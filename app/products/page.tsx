@@ -29,6 +29,8 @@ function getImageUrl(url: string) {
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,6 +38,7 @@ export default function ProductsPage() {
       try {
         const data = await fetchProducts();
         setProducts(data);
+        setFilteredProducts(data);
       } catch (error) {
         console.error('Error loading products:', error);
       } finally {
@@ -45,6 +48,18 @@ export default function ProductsPage() {
 
     loadProducts();
   }, []);
+
+  const handleCategoryChange = (value: string) => {
+    setSelectedCategory(value);
+    if (value === "all") {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter(
+        product => product.category.toLowerCase() === value.toLowerCase()
+      );
+      setFilteredProducts(filtered);
+    }
+  };
 
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center"><Spinner/></div>;
@@ -78,19 +93,17 @@ export default function ProductsPage() {
         <div className="container">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <Select>
-                <SelectTrigger className=" w-[170px] md:w-[180px]">
+              <Select onValueChange={handleCategoryChange} defaultValue="all">
+                <SelectTrigger className="w-[170px] md:w-[180px]">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Categories</SelectItem>
-                  <SelectItem value="industrial">Industrial</SelectItem>
                   <SelectItem value="commercial">Commercial</SelectItem>
                   <SelectItem value="residential">Residential</SelectItem>
-                  <SelectItem value="portable">Portable</SelectItem>
                 </SelectContent>
               </Select>
-              <Select>
+              {/* <Select>
                 <SelectTrigger className="w-[170px] md:w-[180px]">
                   <SelectValue placeholder="Power Range" />
                 </SelectTrigger>
@@ -101,9 +114,9 @@ export default function ProductsPage() {
                   <SelectItem value="low">100-499kW</SelectItem>
                   <SelectItem value="mini">Below 100kW</SelectItem>
                 </SelectContent>
-              </Select>
+              </Select> */}
             </div>
-            <Select>
+            {/* <Select>
               <SelectTrigger className="w-[170px] md:w-[180px]">
                 <SelectValue placeholder="Sort By" />
               </SelectTrigger>
@@ -113,58 +126,58 @@ export default function ProductsPage() {
                 <SelectItem value="price-asc">Price: Low to High</SelectItem>
                 <SelectItem value="price-desc">Price: High to Low</SelectItem>
               </SelectContent>
-            </Select>
+            </Select> */}
           </div>
         </div>
       </section>
 
       <section className="py-12">
-  <div className="container mx-auto max-w-screen-xl px-4">
-    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center">
-      {products.map((product, index) => (
-        <motion.div
-          key={product.id}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: index * 0.1 }}
-          className="flex justify-center"
-        >
-          <Card className="h-full w-full max-w-[300px]">
-            <div className="relative aspect-square overflow-hidden">
-              <Image
-                src={getImageUrl(product.images[0])}
-                alt={product.name}
-                fill
-                className="object-cover transition-transform duration-300 hover:scale-105"
-                unoptimized
-              />
-            </div>
-            <CardContent className="p-6">
-              <div className="mb-2 flex items-center justify-between">
-                <span className="text-sm font-medium text-muted-foreground">
-                  {product.category}
-                </span>
-                <span className="text-sm font-medium text-muted-foreground">
-                  {product.power}
-                </span>
-              </div>
-              <h3 className="mb-2 text-lg font-semibold">{product.name}</h3>
-              <p className="mb-4 text-sm text-muted-foreground">
-                {product.description}
-              </p>
-              {/* <p className="text-xl font-bold text-primary">{product.price}</p> */}
-            </CardContent>
-            <CardFooter className="p-6 pt-0">
-              <Button asChild className="w-full">
-                <Link href={`/products/${product.id}`}>View Details</Link>
-              </Button>
-            </CardFooter>
-          </Card>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</section>
+        <div className="container mx-auto max-w-screen-xl px-4">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center">
+            {filteredProducts.map((product, index) => (
+              <motion.div
+                key={product.id}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: index * 0.1 }}
+                className="flex justify-center"
+              >
+                <Card className="h-full w-full max-w-[300px]">
+                  <div className="relative aspect-square overflow-hidden">
+                    <Image
+                      src={getImageUrl(product.images[0])}
+                      alt={product.name}
+                      fill
+                      className="object-cover transition-transform duration-300 hover:scale-105"
+                      unoptimized
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <div className="mb-2 flex items-center justify-between">
+                      <span className="text-sm font-medium text-muted-foreground">
+                        {product.category}
+                      </span>
+                      <span className="text-sm font-medium text-muted-foreground">
+                        {product.power}
+                      </span>
+                    </div>
+                    <h3 className="mb-2 text-lg font-semibold">{product.name}</h3>
+                    <p className="mb-4 text-sm text-muted-foreground">
+                      {product.description}
+                    </p>
+                    {/* <p className="text-xl font-bold text-primary">{product.price}</p> */}
+                  </CardContent>
+                  <CardFooter className="p-6 pt-0">
+                    <Button asChild className="w-full">
+                      <Link href={`/products/${product.id}`}>View Details</Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
