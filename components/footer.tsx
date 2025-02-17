@@ -1,6 +1,7 @@
 import Link from "next/link";
 import logoImg from "@/image/logo.png";
 import Image from "next/image";
+import RattanImg from "@/image/RATTAN energy.png"
 
 export default function Footer() {
   return (
@@ -9,15 +10,23 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 text-center sm:grid-cols-2 md:grid-cols-4">
           <div className="flex flex-col items-center">
             <Link href="/" className="flex items-center space-x-2">
-            <Image
+            {/* <Image
             src={logoImg} 
             alt="RattanEnergy" 
             className="h-16 w-16" 
             width={300} 
             height={200}
             priority
+          /> */}
+          <Image 
+            src={RattanImg} 
+            alt="RattanEnergy" 
+            className="h-8 w-[200px]" 
+            width={500} 
+            height={200}
+            priority
           />
-              <span className="text-xl font-bold">Rattan Energy</span>
+              {/* <span className="text-xl font-bold">Rattan Energy</span> */}
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
               Leading manufacturer of industrial generators and machinery solutions since 1995.
@@ -35,7 +44,7 @@ export default function Footer() {
           <div className="flex flex-col items-center">
             <h3 className="text-lg font-semibold">Contact</h3>
             <ul className="mt-4 space-y-2">
-              <li className="text-sm text-muted-foreground">Rattan Avenue</li>
+              <li className="text-sm text-muted-foreground">Rattan Square</li>
               <li className="text-sm text-muted-foreground">Sector 23, Chandigarh</li>
               <li className="text-sm text-muted-foreground">Phone: +91-7888733548</li>
               <li className="text-sm text-muted-foreground">Email: RattanEnergyindia@gmail.com</li>

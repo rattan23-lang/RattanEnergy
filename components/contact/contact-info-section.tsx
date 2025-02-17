@@ -18,7 +18,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Address",
-    content: "Rattan Avenue, Sector 23, Chandigarh",
+    content: "Rattan Square, Sector 23, Chandigarh",
   },
   {
     icon: Clock,
