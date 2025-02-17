@@ -121,7 +121,7 @@ export default async function ProductPage({
                 <Badge variant="secondary">{product.power}</Badge>
               </div>
               <h1 className="text-3xl font-bold">{product.name}</h1>
-              <p className="text-2xl font-bold text-primary">{product.price}</p>
+              {/* <p className="text-2xl font-bold text-primary">{product.price}</p> */}
               <p className="text-muted-foreground">{product.description}</p>
 
               {/* Features section */}
