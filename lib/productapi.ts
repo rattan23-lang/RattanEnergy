@@ -15,27 +15,32 @@ export interface Product {
     data: Product[];
   }
   
+  const API_URL = "https://script.google.com/macros/s/AKfycbzOhAx-8VP4wKAJXJyi2_g7m4aY4EjD59A7e1hk0ikKQVcMqqCU0vvUPZqAP53dKhkx/exec";
+  
   export async function fetchProducts(): Promise<Product[]> {
-    const API_URL = "https://script.google.com/macros/s/AKfycbzOhAx-8VP4wKAJXJyi2_g7m4aY4EjD59A7e1hk0ikKQVcMqqCU0vvUPZqAP53dKhkx/exec";
-    
     try {
-      const response = await fetch(API_URL, { next: { revalidate: 3600 } });
-      
-      if (!response.ok) throw new Error('Failed to fetch products');
+      const response = await fetch(API_URL);
+      if (!response.ok) {
+        console.error('API response not ok:', response.status);
+        return [];
+      }
       
       const data: ProductApiResponse = await response.json();
-      if (data.status !== "success") throw new Error('API returned error status');
-      
-      return data.data;
+      return data.data || [];
     } catch (error) {
       console.error('Error fetching products:', error);
-      throw error;
+      return [];
     }
   }
 
   export async function getProduct(id: number): Promise<Product | undefined> {
-    const products = await fetchProducts();
-    return products.find(product => product.id === id);
+    try {
+      const products = await fetchProducts();
+      return products.find(product => product.id === id);
+    } catch (error) {
+      console.error('Error getting product:', error);
+      return undefined;
+    }
   }
 
   export async function generateProductStaticParams() {
