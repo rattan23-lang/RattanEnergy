@@ -14,24 +14,17 @@ import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, Box, Gauge, Wrench, Zap } from "lucide-react";
 import { getProduct, generateProductStaticParams } from "@/lib/productapi";
 
-// This is required for static export
 export async function generateStaticParams() {
   return generateProductStaticParams();
-}
-
-interface PageProps {
-  params: { id: string };
 }
 
 function getImageUrl(url: string) {
   if (!url) return '';
   
-  // Extract the file ID from various possible Google Drive URL formats
   const idMatch = url.match(/[-\w]{25,}/);
   if (!idMatch) return url;
   
   const fileId = idMatch[0];
-  // Use the same Google Photos CDN URL format as blogs
   return `https://lh3.googleusercontent.com/d/${fileId}`;
 }
 
@@ -40,7 +33,11 @@ function getWhatsAppLink(productName: string) {
   return `https://wa.me/917888733548?text=${message}`;
 }
 
-export default async function ProductPage({ params }: PageProps) {
+export default async function ProductPage({ 
+  params 
+}: { 
+  params: { id: string } 
+}) {
   try {
     const productId = parseInt(params.id);
     const product = await getProduct(productId);
