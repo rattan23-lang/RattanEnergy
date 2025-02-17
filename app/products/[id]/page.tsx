@@ -12,11 +12,11 @@ import {
 } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, Box, Gauge, Wrench, Zap } from "lucide-react";
-import { getProduct, generateProductStaticParams } from "@/lib/productapi";
+import { getProduct } from "@/lib/productapi";
 
-export async function generateStaticParams() {
-  return generateProductStaticParams();
-}
+// Remove generateStaticParams and use dynamic rendering
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
 
 function getImageUrl(url: string) {
   if (!url) return '';
@@ -34,11 +34,12 @@ function getWhatsAppLink(productName: string) {
 }
 
 export default async function ProductPage({ 
-  params 
+  params: paramsPromise 
 }: { 
-  params: { id: string } 
+  params: Promise<{ id: string }> 
 }) {
   try {
+    const params = await paramsPromise;
     const productId = parseInt(params.id);
     const product = await getProduct(productId);
     
