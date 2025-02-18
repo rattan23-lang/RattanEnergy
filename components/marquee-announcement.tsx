@@ -9,9 +9,9 @@ export default function MarqueeAnnouncement() {
       <span className="mx-4">|</span>
       <span className="mx-4">📢 High Quality Products At Lowest Prices</span>
       <span className="mx-4">|</span>
-      <span className="mx-4">🌟 Portable Powerful Reliable</span>
+      <span className="mx-4">🌟 Portable Powerful Reliable Solutions</span>
       <span className="mx-4">|</span>
-      <span className="mx-4"> ✆ Call us now @ +91-7888733548 to get exciting deals</span>
+      <span className="mx-4"> ✆ Call us now @ +91-7888733548 to get exciting deals &nbsp; |</span>
     </Marquee>
   );
 }

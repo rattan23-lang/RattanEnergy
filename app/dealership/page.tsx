@@ -41,8 +41,8 @@ const formSchema = z.object({
 
 const benefits = [
   {
-    title: "Exclusive Territory Rights",
-    description: "Secure your market with protected geographical territories",
+    title: "Authorized Dealership Status",
+    description: "Gain official recognition as an authorized Rattan Energy dealer in your region",
     icon: CheckCircle,
   },
   {
@@ -57,7 +57,7 @@ const benefits = [
   },
   {
     title: "Technical Support",
-    description: "24/7 technical assistance for you and your customers",
+    description: "Get technical assistance for you and your customers",
     icon: CheckCircle,
   },
   {
@@ -166,7 +166,7 @@ export default function DealershipPage() {
           >
             <h1 className="mb-4 text-4xl font-bold">Become a Dealer</h1>
             <p className="mx-auto max-w-2xl text-muted-foreground">
-              Join our network of successful dealers and grow your business with aGenerator.
+              Join our network of successful dealers and grow your business with Rattan Energy.
               We provide comprehensive support to help you succeed in the power generation industry.
             </p>
           </motion.div>
