@@ -27,7 +27,7 @@ export async function GET(request: Request) {
           'Accept-Language': 'en-US,en;q=0.9',
           'Referer': 'https://drive.google.com/'
         },
-        next: { revalidate: 3600 }
+        next: { revalidate: 0 }
       });
 
       if (!response.ok) continue;

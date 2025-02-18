@@ -4,7 +4,7 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
     const API_URL = "https://script.google.com/macros/s/AKfycbxa1eJHRfpmdP5UgSN_T3aqMxd-Q5CjN4ry6O6W8HWs8eEn21nTMTElvcK3tfrtxBaY/exec";
     
     try {
-      const response = await fetch(API_URL, { next: { revalidate: 3600 } }); 
+      const response = await fetch(API_URL, { next: { revalidate: 0 } }); 
       
       if (!response.ok) throw new Error('Failed to fetch blog posts');
       
