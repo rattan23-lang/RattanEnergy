@@ -6,7 +6,6 @@ import { Spinner } from "@/components/ui/spinner";
 export default async function page() {
   try {
     const posts = await fetchBlogPosts();
-
     return (
       <div className="min-h-screen bg-background">
         <Suspense fallback={<Spinner />}>
