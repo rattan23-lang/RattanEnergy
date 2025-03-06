@@ -8,28 +8,38 @@ import Newsletter from "@/components/home/newsletter";
 import { fetchBlogPosts } from "@/lib/api";
 
 // Update the Props interface to use Promise
+// interface Props {
+//   params: Promise<{ title: string }>;
+// }
 interface Props {
-  params: Promise<{ title: string }>;
+  params: { title: string };
 }
 
 // Function to convert title to URL-friendly slug
-const titleToSlug = (title: string) => {
-  return title
+const titleToSlug = (title: string, id?: string | number) => {
+  const baseSlug = title
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
+  
+  // If id is provided, append it to create a truly unique slug
+  // Convert id to string if needed
+  return id ? `${baseSlug}-${String(id)}` : baseSlug;
 };
 
+
 // Update the component to await params
-export default async function BlogPost({ params: paramsPromise }: Props) {
-  const params = await paramsPromise;
+export default async function BlogPost({ params }: Props) {
+  // const params = await paramsPromise;
   const { title } = params;
   
   const posts = await fetchBlogPosts();
-  const post = posts.find(post => 
-    titleToSlug(post.title) === title
+  let post = posts.find(post => 
+    titleToSlug(post.title, post.id) === title
   );
-
+  if (!post) {
+    post = posts.find(post => titleToSlug(post.title) === title);
+  }
   if (!post) {
     notFound();
   }
@@ -47,20 +57,25 @@ export default async function BlogPost({ params: paramsPromise }: Props) {
 }
 
 // Update MetadataProps interface
+// interface MetadataProps {
+//   params: Promise<{ title: string }>;
+// }
 interface MetadataProps {
-  params: Promise<{ title: string }>;
+  params: { title: string };
 }
 
 // Update generateMetadata to await params
-export async function generateMetadata({ params: paramsPromise }: MetadataProps): Promise<Metadata> {
-  const params = await paramsPromise;
+export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
+  // const params = await paramsPromise;
   const decodedTitle = decodeURIComponent(params.title);
-  
+  const {title} = params;
   const posts = await fetchBlogPosts();
-  const post = posts.find(post => 
-    titleToSlug(post.title) === decodedTitle
+  let post = posts.find(post => 
+    titleToSlug(post.title, post.id) === title
   );
-
+  if (!post) {
+    post = posts.find(post => titleToSlug(post.title) === title);
+  }
   if (!post) {
     return {
       title: 'Post Not Found',

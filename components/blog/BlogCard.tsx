@@ -35,9 +35,11 @@ export function BlogCard({ title, description, image, index, href }: BlogCardPro
     // Return the more reliable Google Photos CDN URL
     return `https://lh3.googleusercontent.com/d/${fileId}`;
 };
-
+console.log(`Post ${index} image:`, image); // Debug log
   // Transform image URL if needed
   const processedImageUrl = image ? getImageUrl(image) : '';
+  
+
   const variants = {
     hidden: { 
       opacity: 0,
@@ -70,7 +72,9 @@ export function BlogCard({ title, description, image, index, href }: BlogCardPro
             alt={title}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
-            onError={() => setImageError(true)}
+            onError={() => {
+              console.log("image nor loading")
+              setImageError(true)}}
             unoptimized 
           />
         </div>
