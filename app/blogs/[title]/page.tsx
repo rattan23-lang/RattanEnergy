@@ -5,9 +5,9 @@ import { BlogContent } from "@/components/blog/BlogContent";
 import Newsletter from "@/components/home/newsletter";
 import { fetchBlogPosts } from "@/lib/api";
 
-// Define the Props interface with params as a Promise
+// Define the Props interface
 interface Props {
-  params: Promise<{ title: string }>; // Updated to use Promise
+  params: { title: string };
 }
 
 // Function to convert title to URL-friendly slug
@@ -16,16 +16,15 @@ const titleToSlug = (title: string, id?: string | number) => {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
-
+  
   // If id is provided, append it to create a truly unique slug
   return id ? `${baseSlug}-${String(id)}` : baseSlug;
 };
 
-// Update the component to await params
+// Update the component
 export default async function BlogPost({ params }: Props) {
-  const resolvedParams = await params; // Await the params Promise
-  const { title } = resolvedParams;
-
+  const { title } = params;
+  
   const posts = await fetchBlogPosts();
   let post = posts.find((post) => titleToSlug(post.title, post.id) === title);
   if (!post) {
@@ -34,7 +33,7 @@ export default async function BlogPost({ params }: Props) {
   if (!post) {
     notFound();
   }
-
+  
   return (
     <main className="container mx-auto px-4 py-8">
       <article className="max-w-4xl mx-auto">
@@ -49,15 +48,14 @@ export default async function BlogPost({ params }: Props) {
 
 // Update MetadataProps interface
 interface MetadataProps {
-  params: Promise<{ title: string }>; // Updated to use Promise
+  params: { title: string };
 }
 
-// Update generateMetadata to await params
+// Update generateMetadata
 export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
-  const resolvedParams = await params; // Await the params Promise
-  const { title } = resolvedParams;
+  const { title } = params;
   const decodedTitle = decodeURIComponent(title);
-
+  
   const posts = await fetchBlogPosts();
   let post = posts.find((post) => titleToSlug(post.title, post.id) === title);
   if (!post) {
@@ -69,7 +67,7 @@ export async function generateMetadata({ params }: MetadataProps): Promise<Metad
       description: "The requested blog post could not be found.",
     };
   }
-
+  
   return {
     title: post.title,
     description: post.description,
@@ -80,9 +78,9 @@ export async function generateMetadata({ params }: MetadataProps): Promise<Metad
 export async function generateStaticParams() {
   try {
     const posts = await fetchBlogPosts();
-
+    
     return posts.map((post) => ({
-      title: titleToSlug(post.title),
+      title: titleToSlug(post.title, post.id), // Make sure to use ID for uniqueness
     }));
   } catch (error) {
     console.error("Error generating static params:", error);
