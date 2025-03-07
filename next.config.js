@@ -20,15 +20,11 @@ const nextConfig = {
     unoptimized: true, // Fine for static export; remove if using Vercel's image optimization
     disableStaticImages: false,
   },
-  
+  // For static export with App Router
   output: 'export',
-  // Disable automatic static optimization for specific paths
+  // Use trailing slash for consistent path handling
   trailingSlash: true,
-  // Handle the export path conflicts
-  exportPathMap: async function() {
-    // Return empty object to let Next.js handle dynamic routes
-    return {};
-  },
+  // Remove exportPathMap as it's not compatible with App Router
 };
 
 module.exports = nextConfig;

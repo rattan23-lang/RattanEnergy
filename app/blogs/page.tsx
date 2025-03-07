@@ -3,13 +3,14 @@ import { BlogGrid } from "@/components/blog/BlogGrid";
 import { fetchBlogPosts } from "@/lib/api";
 import { Spinner } from "@/components/ui/spinner";
 
+// These control the static generation behavior
 export const dynamic = 'force-static';
 export const revalidate = 3600; // Revalidate at most every hour
 
 export default async function BlogsPage() {
   try {
     const posts = await fetchBlogPosts();
-    // console.log("Fetched posts:", posts);
+    
     return (
       <div className="min-h-screen bg-background">
         <Suspense fallback={<Spinner />}>

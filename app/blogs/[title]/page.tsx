@@ -5,10 +5,11 @@ import { BlogContent } from "@/components/blog/BlogContent";
 import Newsletter from "@/components/home/newsletter";
 import { fetchBlogPosts } from "@/lib/api";
 
+// These control the static generation behavior
 export const dynamic = 'force-static';
 export const revalidate = 3600; // Revalidate at most every hour
 
-// Define the Props interface
+// Define the Props interface for the App Router
 interface Props {
   params: { title: string };
 }
@@ -49,7 +50,7 @@ export default async function BlogPost({ params }: Props) {
   );
 }
 
-// Metadata generation
+// Metadata generation for App Router
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { title } = params;
   
