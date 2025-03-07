@@ -20,10 +20,7 @@ const nextConfig = {
     unoptimized: true, // Fine for static export; remove if using Vercel's image optimization
     disableStaticImages: false,
   },
-  // Add this to explicitly support dynamic routes with Vercel
-  experimental: {
-    missingSuspenseWithCSRError: false, // Optional: suppresses Suspense warnings if needed
-  },
+  
 };
 
 module.exports = nextConfig;
