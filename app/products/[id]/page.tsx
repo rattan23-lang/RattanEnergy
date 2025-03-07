@@ -14,7 +14,11 @@ import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, Box, Gauge, Wrench, Zap } from "lucide-react";
 import { getProduct, fetchProducts } from "@/lib/productapi";
 
-// Add generateStaticParams
+interface PageProps {
+  params: { id: string };
+}
+
+// Add generateStaticParams for static generation
 export async function generateStaticParams() {
   const products = await fetchProducts();
   return products.map((product) => ({
@@ -37,11 +41,7 @@ function getWhatsAppLink(productName: string) {
   return `https://wa.me/917888733548?text=${message}`;
 }
 
-export default async function ProductPage({ 
-  params 
-}: { 
-  params: { id: string } 
-}) {
+export default async function ProductPage({ params }: PageProps) {
   const productId = parseInt(params.id);
   const product = await getProduct(productId);
   
