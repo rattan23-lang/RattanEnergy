@@ -16,13 +16,7 @@ const jost = Jost({
 export const metadata: Metadata = {
   title: 'Rattan Energy - Generators',
   description: 'Leading manufacturer of commercial and residential generators',
-  icons: {
-    apple: '/image/apple-touch-icon.png',
-    icon: [
-      { url: '/image/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/image/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-    ],
-  },
+  
 };
 
 export default function RootLayout({
