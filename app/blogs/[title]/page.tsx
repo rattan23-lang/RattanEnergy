@@ -5,9 +5,9 @@ import { BlogContent } from "@/components/blog/BlogContent";
 import Newsletter from "@/components/home/newsletter";
 import { fetchBlogPosts } from "@/lib/api";
 
-// Define the Props interface
+// Define the Props interface using PageProps constraint
 interface Props {
-  params: { title: string };
+  params: Promise<{ title: string }>;
 }
 
 // Function to convert title to URL-friendly slug
@@ -21,9 +21,10 @@ const titleToSlug = (title: string, id?: string | number) => {
   return id ? `${baseSlug}-${String(id)}` : baseSlug;
 };
 
-// Update the component
+// Component that properly handles the Promise params
 export default async function BlogPost({ params }: Props) {
-  const { title } = params;
+  const resolvedParams = await params;
+  const { title } = resolvedParams;
   
   const posts = await fetchBlogPosts();
   let post = posts.find((post) => titleToSlug(post.title, post.id) === title);
@@ -48,13 +49,13 @@ export default async function BlogPost({ params }: Props) {
 
 // Update MetadataProps interface
 interface MetadataProps {
-  params: { title: string };
+  params: Promise<{ title: string }>;
 }
 
 // Update generateMetadata
 export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
-  const { title } = params;
-  const decodedTitle = decodeURIComponent(title);
+  const resolvedParams = await params;
+  const { title } = resolvedParams;
   
   const posts = await fetchBlogPosts();
   let post = posts.find((post) => titleToSlug(post.title, post.id) === title);
@@ -80,7 +81,7 @@ export async function generateStaticParams() {
     const posts = await fetchBlogPosts();
     
     return posts.map((post) => ({
-      title: titleToSlug(post.title, post.id), // Make sure to use ID for uniqueness
+      title: titleToSlug(post.title, post.id),
     }));
   } catch (error) {
     console.error("Error generating static params:", error);
