@@ -17,11 +17,8 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
-    unoptimized: true, // Fine for static export; remove if using Vercel's image optimization
-    disableStaticImages: false,
+    unoptimized: true,
   },
-  // For static export with App Router
-  output: 'export',
   // Use trailing slash for consistent path handling
   trailingSlash: true,
 };

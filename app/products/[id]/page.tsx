@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -14,16 +13,11 @@ import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, Box, Gauge, Wrench, Zap } from "lucide-react";
 import { getProduct, fetchProducts } from "@/lib/productapi";
 
+// Enable dynamic rendering
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: { id: string };
-}
-
-// Add generateStaticParams for static generation
-export async function generateStaticParams() {
-  const products = await fetchProducts();
-  return products.map((product) => ({
-    id: product.id.toString(),
-  }));
 }
 
 function getImageUrl(url: string) {
