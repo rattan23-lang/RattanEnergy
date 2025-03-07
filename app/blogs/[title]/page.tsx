@@ -9,9 +9,9 @@ import { fetchBlogPosts } from "@/lib/api";
 export const dynamic = 'force-static';
 export const revalidate = 3600; // Revalidate at most every hour
 
-// Define the Props interface for the App Router
+// Define the Props interface with Promise params as required by your setup
 interface Props {
-  params: { title: string };
+  params: Promise<{ title: string }>;
 }
 
 // Function to convert title to URL-friendly slug
@@ -25,9 +25,10 @@ const titleToSlug = (title: string, id?: string | number) => {
   return id ? `${baseSlug}-${String(id)}` : baseSlug;
 };
 
-// Blog post page component
+// Blog post page component with Promise params
 export default async function BlogPost({ params }: Props) {
-  const { title } = params;
+  const resolvedParams = await params;
+  const { title } = resolvedParams;
   
   const posts = await fetchBlogPosts();
   let post = posts.find((post) => titleToSlug(post.title, post.id) === title);
@@ -50,9 +51,15 @@ export default async function BlogPost({ params }: Props) {
   );
 }
 
-// Metadata generation for App Router
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { title } = params;
+// Metadata generation interface with Promise params
+interface MetadataProps {
+  params: Promise<{ title: string }>;
+}
+
+// Metadata generation with Promise params
+export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
+  const resolvedParams = await params;
+  const { title } = resolvedParams;
   
   const posts = await fetchBlogPosts();
   let post = posts.find((post) => titleToSlug(post.title, post.id) === title);
@@ -72,7 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Generate static paths for all blog posts
+// Generate static params
 export async function generateStaticParams() {
   try {
     const posts = await fetchBlogPosts();

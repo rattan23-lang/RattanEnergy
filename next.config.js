@@ -24,7 +24,6 @@ const nextConfig = {
   output: 'export',
   // Use trailing slash for consistent path handling
   trailingSlash: true,
-  // Remove exportPathMap as it's not compatible with App Router
 };
 
 module.exports = nextConfig;
