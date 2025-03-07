@@ -12,11 +12,15 @@ import {
 } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, Box, Gauge, Wrench, Zap } from "lucide-react";
-import { getProduct } from "@/lib/productapi";
+import { getProduct, fetchProducts } from "@/lib/productapi";
 
-// Remove generateStaticParams and use dynamic rendering
-export const dynamic = 'force-dynamic';
-export const dynamicParams = true;
+// Add generateStaticParams
+export async function generateStaticParams() {
+  const products = await fetchProducts();
+  return products.map((product) => ({
+    id: product.id.toString(),
+  }));
+}
 
 function getImageUrl(url: string) {
   if (!url) return '';
@@ -34,37 +38,35 @@ function getWhatsAppLink(productName: string) {
 }
 
 export default async function ProductPage({ 
-  params: paramsPromise 
+  params 
 }: { 
-  params: Promise<{ id: string }> 
+  params: { id: string } 
 }) {
-  try {
-    const params = await paramsPromise;
-    const productId = parseInt(params.id);
-    const product = await getProduct(productId);
-    
-    if (!product) {
-      return (
-        <div className="container py-20 text-center">
-          <h1 className="mb-4 text-2xl font-bold">Product Not Found</h1>
-          <Button asChild>
-            <Link href="/products">Back to Products</Link>
-          </Button>
-        </div>
-      );
-    }
-
+  const productId = parseInt(params.id);
+  const product = await getProduct(productId);
+  
+  if (!product) {
     return (
-      <div className="min-h-screen mx-1 md:mx-3 md:my-3">
-        <div className="container py-8">
-          {/* Back Button */}
-          <Button variant="ghost" asChild className="mb-8">
-            <Link href="/products">
-              <ChevronLeft className="mr-2 h-4 w-4" />
-              Back to Products
-            </Link>
-          </Button>
-          {/* blog api ->
+      <div className="container py-20 text-center">
+        <h1 className="mb-4 text-2xl font-bold">Product Not Found</h1>
+        <Button asChild>
+          <Link href="/products">Back to Products</Link>
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen mx-1 md:mx-3 md:my-3">
+      <div className="container py-8">
+        {/* Back Button */}
+        <Button variant="ghost" asChild className="mb-8">
+          <Link href="/products">
+            <ChevronLeft className="mr-2 h-4 w-4" />
+            Back to Products
+          </Link>
+        </Button>
+        {/* blog api ->
   // https://docs.google.com/spreadsheets/d/1lBjDt0GoU2hGlJWucrOnxkqRRajVKQx2WIe8zAJzbdk/edit?gid=0#gid=0 
   // https://script.google.com/macros/s/AKfycbxa1eJHRfpmdP5UgSN_T3aqMxd-Q5CjN4ry6O6W8HWs8eEn21nTMTElvcK3tfrtxBaY/exec
   dealr:
@@ -83,131 +85,120 @@ export default async function ProductPage({
   // dealershiprattanenergyindia@gmail.com
   // Rattan9814@
   // rattandealer758@gmail.com */}
-          {/* Product Overview */}
-          <div className="grid gap-8 lg:grid-cols-2">
-            {/* Image Gallery */}
-            <div className="space-y-4">
-              <div className="relative aspect-square overflow-hidden rounded-lg">
-                <Image
-                  src={getImageUrl(product.images[0])}
-                  alt={product.name}
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <div className="grid grid-cols-3 gap-4">
-                {product.images.slice(1).map((image, index) => (
-                  <div
-                    key={index}
-                    className="relative aspect-square overflow-hidden rounded-lg"
-                  >
-                    <Image
-                      src={getImageUrl(image)}
-                      alt={`${product.name} view ${index + 2}`}
-                      fill
-                      className="object-cover"
-                      unoptimized
-                    />
-                  </div>
-                ))}
-              </div>
+        {/* Product Overview */}
+        <div className="grid gap-8 lg:grid-cols-2">
+          {/* Image Gallery */}
+          <div className="space-y-4">
+            <div className="relative aspect-square overflow-hidden rounded-lg">
+              <Image
+                src={getImageUrl(product.images[0])}
+                alt={product.name}
+                fill
+                className="object-cover"
+                unoptimized
+              />
             </div>
-
-            {/* Product Info */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <Badge>{product.category}</Badge>
-                <Badge variant="secondary">{product.power}</Badge>
-              </div>
-              <h1 className="text-3xl font-bold">{product.name}</h1>
-              {/* <p className="text-2xl font-bold text-primary">{product.price}</p> */}
-              <p className="text-muted-foreground">{product.description}</p>
-
-              {/* Features section */}
-              <div className="mt-6">
-                <h2 className="text-xl font-semibold mb-4">Features</h2>
-                <ul className="grid gap-2">
-                  {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <div className="h-2 w-2 rounded-full bg-primary" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Specification if available */}
-              {product.specification && (
-                <div className="mt-6">
-                  <h2 className="text-xl font-semibold mb-4">Specification</h2>
-                  <p className="text-muted-foreground">{product.specification}</p>
-                </div>
-              )}
-
-              <Button asChild size="lg" className="w-full">
-                <a 
-                  href={getWhatsAppLink(product.name)}
-                  target="_blank"
-                  rel="noopener noreferrer"
+            <div className="grid grid-cols-3 gap-4">
+              {product.images.slice(1).map((image, index) => (
+                <div
+                  key={index}
+                  className="relative aspect-square overflow-hidden rounded-lg"
                 >
-                  Request Quote
-                </a>
-              </Button>
+                  <Image
+                    src={getImageUrl(image)}
+                    alt={`${product.name} view ${index + 2}`}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Product Details Tabs */}
-          <div className="mt-12">
-            <Tabs defaultValue="features">
-              <TabsList className="grid w-full  grid-cols-2">
-                <TabsTrigger value="features">Features</TabsTrigger>
-                <TabsTrigger value="specifications">Specifications</TabsTrigger>
-                
-              </TabsList>
-              <TabsContent value="features">
-                <Card>
-                  <CardContent className="p-6">
-                    <ul className="grid gap-4 sm:grid-cols-2">
-                      {product.features.map((feature, index) => (
-                        <li key={index} className="flex items-center gap-2">
-                          <div className="h-2 w-2 rounded-full bg-primary" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              <TabsContent value="specifications">
-                <Card>
-                  <CardContent className="p-6">
-                    <dl className="grid gap-4 sm:grid-cols-2">
-                      {Object.entries(product.specification).map(([key, value]) => (
-                        <div key={key}>
-                          <dt className="font-medium">{key}</dt>
-                          <dd className="text-muted-foreground">{value}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              
-            </Tabs>
+          {/* Product Info */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <Badge>{product.category}</Badge>
+              <Badge variant="secondary">{product.power}</Badge>
+            </div>
+            <h1 className="text-3xl font-bold">{product.name}</h1>
+            {/* <p className="text-2xl font-bold text-primary">{product.price}</p> */}
+            <p className="text-muted-foreground">{product.description}</p>
+
+            {/* Features section */}
+            <div className="mt-6">
+              <h2 className="text-xl font-semibold mb-4">Features</h2>
+              <ul className="grid gap-2">
+                {product.features.map((feature, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-primary" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Specification if available */}
+            {product.specification && (
+              <div className="mt-6">
+                <h2 className="text-xl font-semibold mb-4">Specification</h2>
+                <p className="text-muted-foreground">{product.specification}</p>
+              </div>
+            )}
+
+            <Button asChild size="lg" className="w-full">
+              <a 
+                href={getWhatsAppLink(product.name)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Request Quote
+              </a>
+            </Button>
           </div>
         </div>
+
+        {/* Product Details Tabs */}
+        <div className="mt-12">
+          <Tabs defaultValue="features">
+            <TabsList className="grid w-full  grid-cols-2">
+              <TabsTrigger value="features">Features</TabsTrigger>
+              <TabsTrigger value="specifications">Specifications</TabsTrigger>
+              
+            </TabsList>
+            <TabsContent value="features">
+              <Card>
+                <CardContent className="p-6">
+                  <ul className="grid gap-4 sm:grid-cols-2">
+                    {product.features.map((feature, index) => (
+                      <li key={index} className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-primary" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            <TabsContent value="specifications">
+              <Card>
+                <CardContent className="p-6">
+                  <dl className="grid gap-4 sm:grid-cols-2">
+                    {Object.entries(product.specification).map(([key, value]) => (
+                      <div key={key}>
+                        <dt className="font-medium">{key}</dt>
+                        <dd className="text-muted-foreground">{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            
+          </Tabs>
+        </div>
       </div>
-    );
-  } catch (error) {
-    console.error('Error loading product:', error);
-    return (
-      <div className="container py-20 text-center">
-        <h1 className="mb-4 text-2xl font-bold">Error Loading Product</h1>
-        <Button asChild>
-          <Link href="/products">Back to Products</Link>
-        </Button>
-      </div>
-    );
-  }
+    </div>
+  );
 }
