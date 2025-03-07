@@ -21,6 +21,14 @@ const nextConfig = {
     disableStaticImages: false,
   },
   
+  output: 'export',
+  // Disable automatic static optimization for specific paths
+  trailingSlash: true,
+  // Handle the export path conflicts
+  exportPathMap: async function() {
+    // Return empty object to let Next.js handle dynamic routes
+    return {};
+  },
 };
 
 module.exports = nextConfig;
