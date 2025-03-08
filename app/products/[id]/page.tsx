@@ -2,16 +2,9 @@ import { notFound } from 'next/navigation';
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeft } from "lucide-react";
-import { getProduct, Product } from "@/lib/productapi";
+import { getProduct } from "@/lib/productapi";
 
 // Enable dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -31,30 +24,20 @@ function getWhatsAppLink(productName: string) {
   return `https://wa.me/917888733548?text=${message}`;
 }
 
-// // Type from Next.js generated types
-// type NextJsPageProps = {
-//   params: Promise<any>;
-// };
-
-// // Your custom type
-// type CustomPageProps = {
-//   params: { id: string };
-// };
-
-// @ts-ignore - Bypass type checking for this component
-export default async function Page({ params }: any) {
-  // Safely extract the ID regardless of params structure
-  const id = params instanceof Promise 
-    ? (await params).id 
-    : params.id;
-  
-  const productId = parseInt(id);
-
-const product = await getProduct(productId);
-
-if (!product) {
-  return notFound();
+// Fix the type definition to match what Vercel's Next.js expects
+interface PageProps {
+  params: Promise<{ id: string }>;
 }
+
+export default async function Page({ params }: PageProps) {
+  const resolvedParams = await params;
+  const productId = parseInt(resolvedParams.id);
+  
+  const product = await getProduct(productId);
+  
+  if (!product) {
+    return notFound();
+  }
 
   return (
     <div className="min-h-screen mx-1 md:mx-3 md:my-3">
@@ -139,8 +122,6 @@ if (!product) {
             </Button>
           </div>
         </div>
-
-        
       </div>
     </div>
   );

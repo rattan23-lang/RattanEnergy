@@ -6,13 +6,13 @@ import Newsletter from "@/components/home/newsletter";
 import { fetchBlogPosts } from "@/lib/api";
 
 // These control the static generation behavior
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic'; // Changed to dynamic to avoid static export issues
 export const revalidate = 3600; // Revalidate at most every hour
 
-// Define the Props interface with a simple object params as required by Next.js
-type PageProps = {
-  params: { title: string };
-};
+// Define the Props interface with Promise params as required by your Vercel setup
+interface Props {
+  params: Promise<{ title: string }>;
+}
 
 // Function to convert title to URL-friendly slug
 const titleToSlug = (title: string, id?: string | number) => {
@@ -25,9 +25,10 @@ const titleToSlug = (title: string, id?: string | number) => {
   return id ? `${baseSlug}-${String(id)}` : baseSlug;
 };
 
-// Blog post page component with correct params type
-export default async function BlogPost({ params }: PageProps) {
-  const { title } = params;
+// Blog post page component with Promise params
+export default async function BlogPost({ params }: Props) {
+  const resolvedParams = await params;
+  const { title } = resolvedParams;
   
   const posts = await fetchBlogPosts();
   let post = posts.find((post) => titleToSlug(post.title, post.id) === title);
@@ -50,9 +51,10 @@ export default async function BlogPost({ params }: PageProps) {
   );
 }
 
-// Metadata generation with correct params type
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { title } = params;
+// Metadata generation with Promise params
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const resolvedParams = await params;
+  const { title } = resolvedParams;
   
   const posts = await fetchBlogPosts();
   let post = posts.find((post) => titleToSlug(post.title, post.id) === title);
