@@ -4,7 +4,8 @@ import { fetchBlogPosts } from "@/lib/api";
 import { Spinner } from "@/components/ui/spinner";
 
 // These control the static generation behavior
-export const dynamic = 'force-static';
+// Change to force-dynamic to avoid export path issues
+export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate at most every hour
 
 export default async function BlogsPage() {
