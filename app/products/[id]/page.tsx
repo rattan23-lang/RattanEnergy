@@ -16,9 +16,13 @@ import { getProduct, fetchProducts } from "@/lib/productapi";
 // Enable dynamic rendering
 export const dynamic = 'force-dynamic';
 
-interface PageProps {
-  params: { id: string };
-}
+// Correctly type the params
+type ProductPageParams = {
+  params: {
+    id: string;
+  };
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
 
 function getImageUrl(url: string) {
   if (!url) return '';
@@ -35,7 +39,7 @@ function getWhatsAppLink(productName: string) {
   return `https://wa.me/917888733548?text=${message}`;
 }
 
-export default async function ProductPage({ params }: PageProps) {
+export default async function ProductPage({ params, searchParams }: ProductPageParams) {
   const productId = parseInt(params.id);
   const product = await getProduct(productId);
   
@@ -60,25 +64,7 @@ export default async function ProductPage({ params }: PageProps) {
             Back to Products
           </Link>
         </Button>
-        {/* blog api ->
-  // https://docs.google.com/spreadsheets/d/1lBjDt0GoU2hGlJWucrOnxkqRRajVKQx2WIe8zAJzbdk/edit?gid=0#gid=0 
-  // https://script.google.com/macros/s/AKfycbxa1eJHRfpmdP5UgSN_T3aqMxd-Q5CjN4ry6O6W8HWs8eEn21nTMTElvcK3tfrtxBaY/exec
-  dealr:
-  https://docs.google.com/spreadsheets/d/1wr7ICCKZ8jMfv-EANEU2FYpVFMBbqNew3O23DtYWZhk/edit?usp=sharing
-  inter: https://sheetdb.io/api/v1/nqfxbv2jox06z
-  // Product api->
-  https://docs.google.com/spreadsheets/d/12M8neYZlJnX54GWdztzb6seysL_heL6yRCTevCeoz-g/edit?usp=sharing
-  // https://script.google.com/macros/s/AKfycbzOhAx-8VP4wKAJXJyi2_g7m4aY4EjD59A7e1hk0ikKQVcMqqCU0vvUPZqAP53dKhkx/exec
-  // deployment ID= AKfycbzOhAx-8VP4wKAJXJyi2_g7m4aY4EjD59A7e1hk0ikKQVcMqqCU0vvUPZqAP53dKhkx
-
-  ctc:https://docs.google.com/spreadsheets/d/1TK-izEvP-qrKkbXrW_3hnkeSUOwj_m1f89qUfksJKgM/edit?usp=sharing
-  https://sheetdb.io/api/v1/6zfdxem3iwgu2
-
-  // contactrattanergyindia@gmail.com
-  // Rahul9814@
-  // dealershiprattanenergyindia@gmail.com
-  // Rattan9814@
-  // rattandealer758@gmail.com */}
+        
         {/* Product Overview */}
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Image Gallery */}
@@ -117,14 +103,13 @@ export default async function ProductPage({ params }: PageProps) {
               <Badge variant="secondary">{product.power}</Badge>
             </div>
             <h1 className="text-3xl font-bold">{product.name}</h1>
-            {/* <p className="text-2xl font-bold text-primary">{product.price}</p> */}
             <p className="text-muted-foreground">{product.description}</p>
 
             {/* Features section */}
             <div className="mt-6">
               <h2 className="text-xl font-semibold mb-4">Features</h2>
               <ul className="grid gap-2">
-                {product.features.map((feature, index) => (
+                {product.features && product.features.map((feature, index) => (
                   <li key={index} className="flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-primary" />
                     {feature}
@@ -137,7 +122,7 @@ export default async function ProductPage({ params }: PageProps) {
             {product.specification && (
               <div className="mt-6">
                 <h2 className="text-xl font-semibold mb-4">Specification</h2>
-                <p className="text-muted-foreground">{product.specification}</p>
+                <p className="text-muted-foreground">{typeof product.specification === 'string' ? product.specification : JSON.stringify(product.specification)}</p>
               </div>
             )}
 
@@ -156,16 +141,15 @@ export default async function ProductPage({ params }: PageProps) {
         {/* Product Details Tabs */}
         <div className="mt-12">
           <Tabs defaultValue="features">
-            <TabsList className="grid w-full  grid-cols-2">
+            <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="features">Features</TabsTrigger>
               <TabsTrigger value="specifications">Specifications</TabsTrigger>
-              
             </TabsList>
             <TabsContent value="features">
               <Card>
                 <CardContent className="p-6">
                   <ul className="grid gap-4 sm:grid-cols-2">
-                    {product.features.map((feature, index) => (
+                    {product.features && product.features.map((feature, index) => (
                       <li key={index} className="flex items-center gap-2">
                         <div className="h-2 w-2 rounded-full bg-primary" />
                         {feature}
@@ -178,18 +162,21 @@ export default async function ProductPage({ params }: PageProps) {
             <TabsContent value="specifications">
               <Card>
                 <CardContent className="p-6">
-                  <dl className="grid gap-4 sm:grid-cols-2">
-                    {Object.entries(product.specification).map(([key, value]) => (
-                      <div key={key}>
-                        <dt className="font-medium">{key}</dt>
-                        <dd className="text-muted-foreground">{value}</dd>
-                      </div>
-                    ))}
-                  </dl>
+                  {typeof product.specification === 'object' ? (
+                    <dl className="grid gap-4 sm:grid-cols-2">
+                      {Object.entries(product.specification).map(([key, value]) => (
+                        <div key={key}>
+                          <dt className="font-medium">{key}</dt>
+                          <dd className="text-muted-foreground">{String(value)}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  ) : (
+                    <p className="text-muted-foreground">{product.specification}</p>
+                  )}
                 </CardContent>
               </Card>
             </TabsContent>
-            
           </Tabs>
         </div>
       </div>
