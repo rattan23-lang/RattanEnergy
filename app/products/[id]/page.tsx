@@ -31,20 +31,30 @@ function getWhatsAppLink(productName: string) {
   return `https://wa.me/917888733548?text=${message}`;
 }
 
-type PageProps = {
+// Type from Next.js generated types
+type NextJsPageProps = {
+  params: Promise<any>;
+};
+
+// Your custom type
+type CustomPageProps = {
   params: { id: string };
 };
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: NextJsPageProps | CustomPageProps) {
   // Await the params object if it's a Promise
   // const resolvedParams = params instanceof Promise ? await params : params;
-  const productId = parseInt(params.id);
-  
-  const product = await getProduct(productId);
-  
-  if (!product) {
-    return notFound();
-  }
+  const id = params instanceof Promise 
+  ? (await params).id 
+  : params.id;
+
+const productId = parseInt(id);
+
+const product = await getProduct(productId);
+
+if (!product) {
+  return notFound();
+}
 
   return (
     <div className="min-h-screen mx-1 md:mx-3 md:my-3">
