@@ -10,19 +10,11 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { ChevronLeft, Box, Gauge, Wrench, Zap } from "lucide-react";
-import { getProduct, fetchProducts } from "@/lib/productapi";
+import { ChevronLeft } from "lucide-react";
+import { getProduct } from "@/lib/productapi";
 
 // Enable dynamic rendering
 export const dynamic = 'force-dynamic';
-
-// Correctly type the params
-type ProductPageParams = {
-  params: {
-    id: string;
-  };
-  searchParams?: { [key: string]: string | string[] | undefined };
-};
 
 function getImageUrl(url: string) {
   if (!url) return '';
@@ -39,7 +31,12 @@ function getWhatsAppLink(productName: string) {
   return `https://wa.me/917888733548?text=${message}`;
 }
 
-export default async function ProductPage({ params, searchParams }: ProductPageParams) {
+// Use the built-in Next.js types without custom interfaces
+export default async function ProductPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const productId = parseInt(params.id);
   const product = await getProduct(productId);
   
@@ -109,7 +106,7 @@ export default async function ProductPage({ params, searchParams }: ProductPageP
             <div className="mt-6">
               <h2 className="text-xl font-semibold mb-4">Features</h2>
               <ul className="grid gap-2">
-                {product.features && product.features.map((feature, index) => (
+                {Array.isArray(product.features) && product.features.map((feature, index) => (
                   <li key={index} className="flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-primary" />
                     {feature}
@@ -122,7 +119,11 @@ export default async function ProductPage({ params, searchParams }: ProductPageP
             {product.specification && (
               <div className="mt-6">
                 <h2 className="text-xl font-semibold mb-4">Specification</h2>
-                <p className="text-muted-foreground">{typeof product.specification === 'string' ? product.specification : JSON.stringify(product.specification)}</p>
+                <p className="text-muted-foreground">
+                  {typeof product.specification === 'string' 
+                    ? product.specification 
+                    : JSON.stringify(product.specification)}
+                </p>
               </div>
             )}
 
@@ -149,7 +150,7 @@ export default async function ProductPage({ params, searchParams }: ProductPageP
               <Card>
                 <CardContent className="p-6">
                   <ul className="grid gap-4 sm:grid-cols-2">
-                    {product.features && product.features.map((feature, index) => (
+                    {Array.isArray(product.features) && product.features.map((feature, index) => (
                       <li key={index} className="flex items-center gap-2">
                         <div className="h-2 w-2 rounded-full bg-primary" />
                         {feature}
@@ -162,7 +163,7 @@ export default async function ProductPage({ params, searchParams }: ProductPageP
             <TabsContent value="specifications">
               <Card>
                 <CardContent className="p-6">
-                  {typeof product.specification === 'object' ? (
+                  {typeof product.specification === 'object' && product.specification !== null ? (
                     <dl className="grid gap-4 sm:grid-cols-2">
                       {Object.entries(product.specification).map(([key, value]) => (
                         <div key={key}>
@@ -172,7 +173,11 @@ export default async function ProductPage({ params, searchParams }: ProductPageP
                       ))}
                     </dl>
                   ) : (
-                    <p className="text-muted-foreground">{product.specification}</p>
+                    <p className="text-muted-foreground">
+                      {typeof product.specification === 'string' 
+                        ? product.specification 
+                        : JSON.stringify(product.specification)}
+                    </p>
                   )}
                 </CardContent>
               </Card>
