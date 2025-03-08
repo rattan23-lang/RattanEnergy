@@ -9,10 +9,10 @@ import { fetchBlogPosts } from "@/lib/api";
 export const dynamic = 'force-static';
 export const revalidate = 3600; // Revalidate at most every hour
 
-// Define the Props interface with Promise params as required by your setup
-interface Props {
-  params: Promise<{ title: string }>;
-}
+// Define the Props interface with a simple object params as required by Next.js
+type PageProps = {
+  params: { title: string };
+};
 
 // Function to convert title to URL-friendly slug
 const titleToSlug = (title: string, id?: string | number) => {
@@ -20,15 +20,14 @@ const titleToSlug = (title: string, id?: string | number) => {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
-  
+    
   // If id is provided, append it to create a truly unique slug
   return id ? `${baseSlug}-${String(id)}` : baseSlug;
 };
 
-// Blog post page component with Promise params
-export default async function BlogPost({ params }: Props) {
-  const resolvedParams = await params;
-  const { title } = resolvedParams;
+// Blog post page component with correct params type
+export default async function BlogPost({ params }: PageProps) {
+  const { title } = params;
   
   const posts = await fetchBlogPosts();
   let post = posts.find((post) => titleToSlug(post.title, post.id) === title);
@@ -51,15 +50,9 @@ export default async function BlogPost({ params }: Props) {
   );
 }
 
-// Metadata generation interface with Promise params
-interface MetadataProps {
-  params: Promise<{ title: string }>;
-}
-
-// Metadata generation with Promise params
-export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
-  const resolvedParams = await params;
-  const { title } = resolvedParams;
+// Metadata generation with correct params type
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { title } = params;
   
   const posts = await fetchBlogPosts();
   let post = posts.find((post) => titleToSlug(post.title, post.id) === title);
