@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { notFound } from 'next/navigation';
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -31,24 +31,33 @@ function getWhatsAppLink(productName: string) {
   return `https://wa.me/917888733548?text=${message}`;
 }
 
-// Use the built-in Next.js types without custom interfaces
-export default async function ProductPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+// Simplified interface for product
+type Product = {
+  id: number;
+  name: string;
+  category: string;
+  power: string;
+  description: string;
+  images: string[];
+  features: string[];
+  specification: any;
+};
+
+// Use an async function to generate the page
+export default async function Page({ params }: { params: { id: string } }) {
+  // Get the product data
   const productId = parseInt(params.id);
-  const product = await getProduct(productId);
+  let product: Product | null = null;
   
+  try {
+    product = await getProduct(productId);
+  } catch (error) {
+    console.error('Error fetching product:', error);
+  }
+  
+  // If product not found, return 404
   if (!product) {
-    return (
-      <div className="container py-20 text-center">
-        <h1 className="mb-4 text-2xl font-bold">Product Not Found</h1>
-        <Button asChild>
-          <Link href="/products">Back to Products</Link>
-        </Button>
-      </div>
-    );
+    return notFound();
   }
 
   return (
