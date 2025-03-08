@@ -48,13 +48,14 @@ export default async function Page({ params }: { params: { id: string } }) {
   // Get the product data
   const productId = parseInt(params.id);
   let product: Product | null = null;
-  
   try {
-    product = await getProduct(productId);
+    const result = await getProduct(productId);
+    if (result) {
+      product = result;
+    }
   } catch (error) {
     console.error('Error fetching product:', error);
   }
-  
   // If product not found, return 404
   if (!product) {
     return notFound();
