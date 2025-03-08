@@ -32,13 +32,13 @@ function getWhatsAppLink(productName: string) {
 }
 
 type PageProps = {
-  params: Promise<{ id: string }> | { id: string };
+  params: { id: string };
 };
 
 export default async function Page({ params }: PageProps) {
   // Await the params object if it's a Promise
-  const resolvedParams = params instanceof Promise ? await params : params;
-  const productId = parseInt(resolvedParams.id);
+  // const resolvedParams = params instanceof Promise ? await params : params;
+  const productId = parseInt(params.id);
   
   const product = await getProduct(productId);
   
