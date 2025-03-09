@@ -1,4 +1,4 @@
-// Alternative approach using the Next.js imported types
+// blogs/[title]/page.tsx
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BackButton } from "@/components/blog/BackButton";
@@ -6,12 +6,17 @@ import { BlogContent } from "@/components/blog/BlogContent";
 import Newsletter from "@/components/home/newsletter";
 import { fetchBlogPosts } from "@/lib/api";
 
-// Importing the correct types from Next.js
-import type { NextPage } from 'next';
-
 // Change to auto instead of force-dynamic
 export const dynamic = 'auto';
 export const revalidate = 3600; // Revalidate at most every hour
+
+// Use Next.js correct type definition
+interface PageProps {
+  params: {
+    title: string;
+  };
+  searchParams: Record<string, string | string[] | undefined>;
+}
 
 // Function to convert title to URL-friendly slug
 const titleToSlug = (title: string, id?: string | number) => {
@@ -24,12 +29,8 @@ const titleToSlug = (title: string, id?: string | number) => {
   return id ? `${baseSlug}-${String(id)}` : baseSlug;
 };
 
-// Blog post page component using a simpler type approach
-export default async function BlogPost({ 
-  params 
-}: { 
-  params: { title: string } 
-}) {
+// Blog post page component with correct param types
+export default async function BlogPost({ params }: PageProps) {
   const { title } = params;
   
   const posts = await fetchBlogPosts();
@@ -53,12 +54,8 @@ export default async function BlogPost({
   );
 }
 
-// Metadata generation with inline type definition
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: { title: string } 
-}): Promise<Metadata> {
+// Metadata generation with correct param types
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { title } = params;
   
   const posts = await fetchBlogPosts();
