@@ -1,4 +1,4 @@
-// blogs/[title]/page.tsx
+// Alternative approach using the Next.js imported types
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BackButton } from "@/components/blog/BackButton";
@@ -6,14 +6,12 @@ import { BlogContent } from "@/components/blog/BlogContent";
 import Newsletter from "@/components/home/newsletter";
 import { fetchBlogPosts } from "@/lib/api";
 
+// Importing the correct types from Next.js
+import type { NextPage } from 'next';
+
 // Change to auto instead of force-dynamic
 export const dynamic = 'auto';
 export const revalidate = 3600; // Revalidate at most every hour
-
-// Define the Props interface - fix the Promise type issue
-interface Props {
-  params: { title: string };
-}
 
 // Function to convert title to URL-friendly slug
 const titleToSlug = (title: string, id?: string | number) => {
@@ -26,8 +24,12 @@ const titleToSlug = (title: string, id?: string | number) => {
   return id ? `${baseSlug}-${String(id)}` : baseSlug;
 };
 
-// Blog post page component without Promise params
-export default async function BlogPost({ params }: Props) {
+// Blog post page component using a simpler type approach
+export default async function BlogPost({ 
+  params 
+}: { 
+  params: { title: string } 
+}) {
   const { title } = params;
   
   const posts = await fetchBlogPosts();
@@ -51,8 +53,12 @@ export default async function BlogPost({ params }: Props) {
   );
 }
 
-// Metadata generation without Promise params
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+// Metadata generation with inline type definition
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: { title: string } 
+}): Promise<Metadata> {
   const { title } = params;
   
   const posts = await fetchBlogPosts();
