@@ -21,6 +21,8 @@ const nextConfig = {
   },
   // Use trailing slash for consistent path handling
   trailingSlash: true,
+   // Only add if you're doing a static export
+  // output: 'export',
 };
 
 module.exports = nextConfig;

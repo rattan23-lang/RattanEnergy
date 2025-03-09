@@ -1,3 +1,4 @@
+// blogs/[title]/page.tsx
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BackButton } from "@/components/blog/BackButton";
@@ -5,13 +6,13 @@ import { BlogContent } from "@/components/blog/BlogContent";
 import Newsletter from "@/components/home/newsletter";
 import { fetchBlogPosts } from "@/lib/api";
 
-// These control the static generation behavior
-export const dynamic = 'force-dynamic'; // Changed to dynamic to avoid static export issues
+// Change to auto instead of force-dynamic
+export const dynamic = 'auto';
 export const revalidate = 3600; // Revalidate at most every hour
 
-// Define the Props interface with Promise params as required by your Vercel setup
+// Define the Props interface - fix the Promise type issue
 interface Props {
-  params: Promise<{ title: string }>;
+  params: { title: string };
 }
 
 // Function to convert title to URL-friendly slug
@@ -25,10 +26,9 @@ const titleToSlug = (title: string, id?: string | number) => {
   return id ? `${baseSlug}-${String(id)}` : baseSlug;
 };
 
-// Blog post page component with Promise params
+// Blog post page component without Promise params
 export default async function BlogPost({ params }: Props) {
-  const resolvedParams = await params;
-  const { title } = resolvedParams;
+  const { title } = params;
   
   const posts = await fetchBlogPosts();
   let post = posts.find((post) => titleToSlug(post.title, post.id) === title);
@@ -51,10 +51,9 @@ export default async function BlogPost({ params }: Props) {
   );
 }
 
-// Metadata generation with Promise params
+// Metadata generation without Promise params
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const resolvedParams = await params;
-  const { title } = resolvedParams;
+  const { title } = params;
   
   const posts = await fetchBlogPosts();
   let post = posts.find((post) => titleToSlug(post.title, post.id) === title);
@@ -74,7 +73,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Generate static params
+// Generate static params - critical for proper static paths generation
 export async function generateStaticParams() {
   try {
     const posts = await fetchBlogPosts();
