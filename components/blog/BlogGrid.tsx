@@ -1,4 +1,3 @@
-// components/blog/BlogGrid.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -11,24 +10,25 @@ interface BlogGridProps {
   initialPosts: BlogPost[];
 }
 
-const titleToSlug = (title: string) => {
-  return title
+const titleToSlug = (title: string, id?: string | number) => {
+  const baseSlug = title
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+  return id ? `${baseSlug}-${String(id)}` : baseSlug;
 };
+
 const isPostEmpty = (post: BlogPost) => {
-  // Consider a post empty if key fields are missing or empty
   return !post.title && !post.description && !post.image;
 };
+
 export function BlogGrid({ initialPosts }: BlogGridProps) {
   const [isLoading, setIsLoading] = useState(!initialPosts?.length);
   const [posts, setPosts] = useState<BlogPost[]>(initialPosts || []);
 
   useEffect(() => {
     if (initialPosts?.length) {
-      // Filter out empty posts when setting state
-      const filteredPosts = initialPosts.filter(post => !isPostEmpty(post));
+      const filteredPosts = initialPosts.filter((post) => !isPostEmpty(post));
       setPosts(filteredPosts);
       setIsLoading(false);
     }
@@ -57,19 +57,16 @@ export function BlogGrid({ initialPosts }: BlogGridProps) {
         </motion.div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post, index) => {
-            
-            return (
-              <BlogCard
-                key={post.id ? post.id : `post-${index}`}
-                index={index}
-                title={post.title}
-                description={post.description}
-                image={post.image}
-                href={`/blogs/${titleToSlug(post.title)}`}
-              />
-            );
-          })}
+          {posts.map((post, index) => (
+            <BlogCard
+              key={post.id ? post.id : `post-${index}`}
+              index={index}
+              title={post.title}
+              description={post.description}
+              image={post.image}
+              href={`/blogs/${titleToSlug(post.title, post.id)}`}
+            />
+          ))}
         </div>
       </div>
     </section>
