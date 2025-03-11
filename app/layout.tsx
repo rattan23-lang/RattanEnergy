@@ -17,6 +17,11 @@ const jost = Jost({
 export const metadata: Metadata = {
   title: 'Rattan Energy - Generators',
   description: 'Leading manufacturer of commercial and residential generators across India.At Rattan Energy, we are committed to delivering top-quality generators in commercial as well as residential sector across India. With a strong focus on performance, durability, and innovation, we provide power solutions that keep your world running without interruption.From sales to expert installation, maintenance, and repairs, our team ensures you get the best service and support. Whether for commercial or residential use, we help you find the perfect generator to match your needs. Reliable power starts here! ⚡',
+  twitter:{
+    card: "summary_large_image",
+    description:"Leading manufacturer of commercial and residential generators across India. Get Best Deals on generators now"
+  },
+  
   
 };
 
