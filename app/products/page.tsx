@@ -75,7 +75,7 @@ export default function ProductsPage() {
           fill
           className="object-cover brightness-50"
         />
-        <div className="absolute inset-0 flex items-center justify-center text-white">
+        {/* <div className="absolute inset-0 flex items-center justify-center text-white">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -85,7 +85,7 @@ export default function ProductsPage() {
             <h1 className="mb-4 text-4xl font-bold">Our Products</h1>
             <p className="text-xl">Discover our range of power solutions</p>
           </motion.div>
-        </div>
+        </div> */}
       </section>
 
       {/* Filters Section */}
