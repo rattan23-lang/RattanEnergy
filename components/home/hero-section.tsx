@@ -5,11 +5,27 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { heroSlides } from "@/lib/constants/hero";
+
 
 export function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
-
+  const heroSlides = [
+    {
+      image: "https://ik.imagekit.io/0ilh5c8tu/hero1.jpg?updatedAt=1741866821559",
+      // title: "Powering Progress",
+      // subtitle: "Industrial Solutions for a Sustainable Future",
+      // cta: "Explore Products",
+      // link: "/products"
+    },
+    
+    {
+      image: "https://ik.imagekit.io/0ilh5c8tu/hero2.jpg?updatedAt=1741866821770",
+      // title: "Innovation First",
+      // subtitle: "Leading the Future of Power Generation",
+      // cta: "Learn More",
+      // link: "/about"
+    }
+  ];
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
@@ -29,14 +45,14 @@ export function HeroSection() {
         >
           <Image
             src={slide.image}
-            alt={slide.title}
+            alt="Ratta energy"
             fill
             priority={index === 0}
             className="object-cover"
           />
           <div className="absolute inset-0 bg-black/50" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="container text-center text-white">
+            {/* <div className="container text-center text-white">
               <motion.h1
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -62,7 +78,7 @@ export function HeroSection() {
                   <Link href={slide.link}>{slide.cta}</Link>
                 </Button>
               </motion.div>
-            </div>
+            </div> */}
           </div>
         </motion.div>
       ))}
