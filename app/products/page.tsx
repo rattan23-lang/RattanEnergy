@@ -70,8 +70,8 @@ export default function ProductsPage() {
       {/* Hero Section */}
       <section className="relative h-[300px]">
         <Image
-          src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=2070"
-          alt="Products"
+          src="https://ik.imagekit.io/0ilh5c8tu/hero1.jpg?updatedAt=1741866821559"
+          alt="Products-RattanEnergy"
           fill
           className="object-cover brightness-50"
         />
