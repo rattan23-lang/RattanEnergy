@@ -70,7 +70,7 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative h-[600px] overflow-hidden">
+      <section className="">
        <HeroSection/>
       </section>
 
