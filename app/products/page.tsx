@@ -68,13 +68,15 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[300px]">
+      <section className="relative w-full ">
+      <div className="aspect-[16/9] sm:aspect-[21/9] md:aspect-[21/8] lg:aspect-[21/7] w-full">
         <Image
           src="https://ik.imagekit.io/0ilh5c8tu/hero1.jpg?updatedAt=1741866821559"
           alt="Products-RattanEnergy"
           fill
-          className="object-cover brightness-50"
+          className="object-cover brightness-100"
         />
+        </div>
         {/* <div className="absolute inset-0 flex items-center justify-center text-white">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
