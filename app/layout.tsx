@@ -9,6 +9,7 @@ import { Toaster } from '@/components/ui/sonner';
 import MarqueeAnnouncement from '@/components/marquee-announcement';
 import Script from 'next/script';
 import Image from 'next/image';
+import Head from 'next/head';
 
 const jost = Jost({
   subsets: ['latin'],
@@ -32,6 +33,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <Head>
+        {/* Noscript fallback for Facebook Pixel */}
+        <noscript>
+          <Image
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            src="https://www.facebook.com/tr?id=3941434876174089&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
+      </Head>
       <body className={`${jost.variable} font-jost`}>
         <ThemeProvider
           attribute="class"
@@ -67,16 +80,7 @@ export default function RootLayout({
         />
       </body>
       
-      {/* Noscript fallback for Facebook Pixel */}
-      <noscript>
-        <Image
-          height="1"
-          width="1"
-          style={{ display: 'none' }}
-          src="https://www.facebook.com/tr?id=3941434876174089&ev=PageView&noscript=1"
-          alt=""
-        />
-      </noscript>
+     
       
       <GoogleAnalytics gaId="G-JGFQ9RXWXK" />
     </html>
