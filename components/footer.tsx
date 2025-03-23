@@ -46,7 +46,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2">
               <li className="text-sm text-muted-foreground">Rattan Square</li>
               <li className="text-sm text-muted-foreground">Sector 23, Chandigarh</li>
-              <li className="text-sm text-muted-foreground">Phone: +91-7888733548</li>
+              <li className="text-sm text-muted-foreground">Phone: +91-7888733548 , +91-9814008335</li>
               <li className="text-sm text-muted-foreground">Email: RattanEnergyindia@gmail.com</li>
             </ul>
           </div>
