@@ -35,7 +35,7 @@ export function HeroSection() {
 
   return (
     <section className="relative w-full overflow-hidden">
-      <div className="h-[300px] xs:h-[350px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] 2xl:h-[800px]">
+      <div className="h-[250px] min-h-[250px] xs:h-[350px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] 2xl:h-[800px]">
       {heroSlides.map((slide, index) => (
         <motion.div
           key={index}
@@ -44,16 +44,17 @@ export function HeroSection() {
           animate={{ opacity: index === currentSlide ? 1 : 0 }}
           transition={{ duration: 0.8 }}
         >
-          
+           <div className="relative h-full w-full">
           <Image
             src={slide.image}
             alt="Rattan energy"
             fill
             priority={index === 0}
             className="object-cover object-center brightness-100"
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
+             sizes="100vw"
             quality={100}
           />
+          </div>
           {/* <div className=" inset-0 " /> */}
           {/* <div className=" inset-0 flex items-center justify-center"> */}
             {/* <div className="container text-center text-white">
