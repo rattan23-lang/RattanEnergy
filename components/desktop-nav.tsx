@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
 
 export function DesktopNav() {
   const pathname = usePathname();
@@ -29,6 +28,12 @@ export function DesktopNav() {
         Products
       </Link>
       <Link
+        href="/service"
+        className={`nav-link ${isActive("/blogs") ? "active" : ""}`}
+      >
+        Services
+      </Link>
+      <Link
         href="/contact"
         className={`nav-link ${isActive("/contact") ? "active" : ""}`}
       >
@@ -38,21 +43,9 @@ export function DesktopNav() {
         href="/blogs"
         className={`nav-link ${isActive("/blogs") ? "active" : ""}`}
       >
-       Blogs
+        Blogs
       </Link>
-      <Link
-        href="/privacypolicy"
-        className={`nav-link ${isActive("/privacypolicy") ? "active" : ""}`}
-      >
-       Privacy Policy
-      </Link>
-      <Button
-        variant="secondary"
-        asChild
-        className="font-semibold"
-      >
-        <Link href="/dealership">Become a Dealer</Link>
-      </Button>
+
     </nav>
   );
 }

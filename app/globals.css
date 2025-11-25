@@ -64,8 +64,9 @@
 }
 
 .nav-link {
-  @apply text-sm font-medium transition-colors hover:text-primary;
+  @apply text-lg font-medium transition-colors hover:text-primary;
 }
+
 
 .nav-link.active {
   @apply text-primary;

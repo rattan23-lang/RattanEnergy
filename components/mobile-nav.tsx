@@ -83,14 +83,24 @@ export function MobileNav({ isOpen, onOpenChange }: MobileNavProps) {
           </Link>
           <Link
             href="/products"
-            className={`nav-link text-lg ${isActive("/products") ? "active" : ""}`}
+            className={`nav-link text-lg ${
+              isActive("/products") ? "active" : ""
+            }`}
             onClick={() => onOpenChange(false)}
           >
             Products
           </Link>
           <Link
+            href="/service"
+            className={`nav-link ${isActive("/blogs") ? "active" : ""}`}
+          >
+            Services
+          </Link>
+          <Link
             href="/contact"
-            className={`nav-link text-lg ${isActive("/contact") ? "active" : ""}`}
+            className={`nav-link text-lg ${
+              isActive("/contact") ? "active" : ""
+            }`}
             onClick={() => onOpenChange(false)}
           >
             Contact
@@ -101,13 +111,6 @@ export function MobileNav({ isOpen, onOpenChange }: MobileNavProps) {
             onClick={() => onOpenChange(false)}
           >
             Blogs
-          </Link>
-          <Link
-            href="/privacypolicy"
-            className={`nav-link text-lg ${isActive("/privacypolicy") ? "active" : ""}`}
-            onClick={() => onOpenChange(false)}
-          >
-            Privacy Policy
           </Link>
           <Button
             variant="secondary"

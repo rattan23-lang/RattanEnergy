@@ -38,6 +38,7 @@ export default function Footer() {
               <li><Link href="/about" className="text-sm text-muted-foreground hover:text-primary">About Us</Link></li>
               <li><Link href="/products" className="text-sm text-muted-foreground hover:text-primary">Products</Link></li>
               <li><Link href="/contact" className="text-sm text-muted-foreground hover:text-primary">Contact</Link></li>
+              <li> <Link href="/privacypolicy"className="text-sm text-muted-foreground hover:text-primary">Privacy Policy</Link></li>
               <li><Link href="/dealership" className="text-sm text-muted-foreground hover:text-primary">Become a Dealer</Link></li>
             </ul>
           </div>
@@ -46,7 +47,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2">
               <li className="text-sm text-muted-foreground">Rattan Square</li>
               <li className="text-sm text-muted-foreground">Sector 23, Chandigarh</li>
-              <li className="text-sm text-muted-foreground">Phone: +91-7888733548 , +91-9814008335</li>
+              <li className="text-sm text-muted-foreground">Phone: +91-7888733548</li>
               <li className="text-sm text-muted-foreground">Email: RattanEnergyindia@gmail.com</li>
             </ul>
           </div>

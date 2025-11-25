@@ -117,7 +117,7 @@ export default async function Page({ params }: PageProps) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Request Quote
+                Call Now
               </a>
             </Button>
           </div>
