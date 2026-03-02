@@ -5,16 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeft } from "lucide-react";
 import { getProduct } from "@/lib/productapi";
+import { ServiceEnquiryModal } from "@/components/ui/service-enquiry-modal";
 
 // Enable dynamic rendering
 export const dynamic = 'force-dynamic';
 
 function getImageUrl(url: string) {
   if (!url) return '';
-  
+
   const idMatch = url.match(/[-\w]{25,}/);
   if (!idMatch) return url;
-  
+
   const fileId = idMatch[0];
   return `https://lh3.googleusercontent.com/d/${fileId}`;
 }
@@ -32,9 +33,9 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
   const resolvedParams = await params;
   const productId = parseInt(resolvedParams.id);
-  
+
   const product = await getProduct(productId);
-  
+
   if (!product) {
     return notFound();
   }
@@ -49,7 +50,7 @@ export default async function Page({ params }: PageProps) {
             Back to Products
           </Link>
         </Button>
-        
+
         {/* Product Overview */}
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Image Gallery */}
@@ -112,7 +113,7 @@ export default async function Page({ params }: PageProps) {
             )}
 
             <Button asChild size="lg" className="w-full">
-              <a 
+              <a
                 href={getWhatsAppLink(product.name)}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -120,6 +121,11 @@ export default async function Page({ params }: PageProps) {
                 Call Now
               </a>
             </Button>
+
+            {/* Book Service / Enquiry – only for Product 4 */}
+            {productId === 4 && (
+              <ServiceEnquiryModal />
+            )}
           </div>
         </div>
       </div>
