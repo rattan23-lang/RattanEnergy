@@ -49,6 +49,22 @@ export function ServiceEnquiryModal({
     }
   }
 
+  /* ── Google Ads conversion helper ── */
+  function gtag_report_conversion(url?: string) {
+    const callback = function () {
+      if (typeof url !== "undefined") {
+        window.location.href = url;
+      }
+    };
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag("event", "conversion", {
+        send_to: "AW-10941887411/KI6WCPz65IMcELPnv-Eo",
+        event_callback: callback,
+      });
+    }
+    return false;
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
@@ -58,11 +74,11 @@ export function ServiceEnquiryModal({
       data: [
         {
           Name: formData.get("name") as string,
-      Email: formData.get("email") as string,
-      Phone: formData.get("phone") as string,
-      Requirement: formData.get("requirement") as string,
-      "Product Name": "MRF Tyres",
-      "Source Page": window.location.href,
+          Email: formData.get("email") as string,
+          Phone: formData.get("phone") as string,
+          Requirement: formData.get("requirement") as string,
+          "Product Name": "MRF Tyres",
+          "Source Page": window.location.href,
         },
       ],
     };
@@ -75,15 +91,9 @@ export function ServiceEnquiryModal({
       });
 
       if (res.ok) {
+        gtag_report_conversion();
         setSubmitted(true);
         toast.success("Enquiry submitted! Our team will contact you soon.");
-
-        /* fire Google Ads conversion */
-        if (typeof window !== "undefined" && typeof window.gtag === "function") {
-          window.gtag("event", "conversion", {
-            send_to: "AW-10941887411/_7rWCN-xof0bELPnv-Eo",
-          });
-        }
       } else {
         toast.error("Submission failed. Please try again.");
       }

@@ -58,7 +58,7 @@ export default function RootLayout({
           <Footer />
           <Toaster />
         </ThemeProvider>
-        
+
         {/* Facebook Pixel Script */}
         <Script
           id="facebook-pixel"
@@ -78,10 +78,29 @@ export default function RootLayout({
             `,
           }}
         />
+
+        {/* Google Ads Global Tag */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-10941887411"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-ads"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('js', new Date());
+              gtag('config', 'AW-10941887411');
+            `,
+          }}
+        />
       </body>
-      
-     
-      
+
+
+
       <GoogleAnalytics gaId="G-JGFQ9RXWXK" />
     </html>
   );
