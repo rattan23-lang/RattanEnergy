@@ -11,7 +11,7 @@ const ServicePage: React.FC = () => {
       {/* HERO SECTION */}
       <div className="relative w-full h-[500px]">
         <Image
-          src="/images/hero-bg.jpg"
+          src="../images/hero-bg.jpg"
           alt="Hero Banner"
           fill
           className="object-cover"
