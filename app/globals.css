@@ -95,3 +95,7 @@
 .testimonial-card {
   @apply rounded-lg bg-card p-6 shadow-md transition-all duration-300 hover:shadow-xl;
 }
+
+.services p {
+  color: #000;
+}
