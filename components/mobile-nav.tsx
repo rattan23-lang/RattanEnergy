@@ -81,21 +81,40 @@ export function MobileNav({ isOpen, onOpenChange }: MobileNavProps) {
           >
             About
           </Link>
+          {/* PRODUCTS MENU */}
+      <div className="flex flex-col">
+        <Link
+          href="/products"
+          className={`nav-link text-lg ${isActive("/products") ? "active" : ""}`}
+          onClick={() => onOpenChange(false)}
+        >
+          Products
+        </Link>
+        <div className="ml-4 flex flex-col space-y-2">
           <Link
-            href="/products"
-            className={`nav-link text-lg ${
-              isActive("/products") ? "active" : ""
-            }`}
+            href="/products/tyres"
+            className={`nav-link ${isActive("/products/tyres") ? "active" : ""}`}
             onClick={() => onOpenChange(false)}
           >
-            Products
+            Tyres
           </Link>
           <Link
-            href="/service"
-            className={`nav-link ${isActive("/blogs") ? "active" : ""}`}
+            href="/products/generators"
+            className={`nav-link ${isActive("/products/generators") ? "active" : ""}`}
+            onClick={() => onOpenChange(false)}
           >
-            Services
+            Generators
           </Link>
+        </div>
+      </div>
+          <Link
+  href="/service"
+  className={`nav-link text-lg ${isActive("/service") ? "active" : ""}`}
+  onClick={() => onOpenChange(false)} // closes the overlay
+>
+  Services
+</Link>
+
           <Link
             href="/contact"
             className={`nav-link text-lg ${

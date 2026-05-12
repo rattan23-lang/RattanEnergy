@@ -21,15 +21,42 @@ export function DesktopNav() {
       >
         About
       </Link>
-      <Link
-        href="/products"
-        className={`nav-link ${isActive("/products") ? "active" : ""}`}
-      >
-        Products
-      </Link>
+      
+      {/* PRODUCTS MENU WITH SUBMENUS */}
+      <div className="relative group">
+  <Link
+    href="/products"
+    className={`nav-link ${isActive("/products") ? "active" : ""}`}
+  >
+    Products
+  </Link>
+
+  {/* Dropdown menu */}
+  <div className="absolute left-0 top-full hidden group-hover:block hover:block bg-white shadow-lg rounded-md">
+    <ul className="py-2 w-40">
+      <li>
+        <Link
+          href="/products/tyres"
+          className="block px-4 py-2 hover:bg-gray-100 text-gray-700"
+        >
+          Tyres
+        </Link>
+      </li>
+      <li>
+        <Link
+          href="/products/generators"
+          className="block px-4 py-2 hover:bg-gray-100 text-gray-700"
+        >
+          Generators
+        </Link>
+      </li>
+    </ul>
+  </div>
+</div>
+
       <Link
         href="/service"
-        className={`nav-link ${isActive("/blogs") ? "active" : ""}`}
+        className={`nav-link ${isActive("/service") ? "active" : ""}`}
       >
         Services
       </Link>
