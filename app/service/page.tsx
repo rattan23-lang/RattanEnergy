@@ -20,7 +20,7 @@ import {
 
 const ServicePage: React.FC = () => {
   return (
-    <div className="services">
+    <div  className="service-page-theme">
       {/* HERO SECTION */}
       <div className="relative w-full h-[500px]">
         <Image
