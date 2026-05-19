@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import HeroImg from "@/image/generators-bg.png"
+import HeroImg from "@/image/generators-bg.jpeg"
 import GeneratorImg1 from "@/image/generator-eyg6500ge.png"
 import GeneratorImg2 from "@/image/generator-ge3310.png"
 import GeneratorImg3 from "@/image/generator-eyg3900ge.png"
