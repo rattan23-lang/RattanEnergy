@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 
 const testimonials = [
   {
@@ -30,16 +32,31 @@ const testimonials = [
 
 export function TestimonialsSlider() {
   const [startIndex, setStartIndex] = useState(0);
+  const [itemsPerView, setItemsPerView] = useState(3);
+
+  // Detect screen size
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setItemsPerView(1); // mobile
+      } else {
+        setItemsPerView(3); // desktop
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const prevSlide = () => {
     setStartIndex((prev) =>
-      prev === 0 ? Math.max(testimonials.length - 3, 0) : prev - 1
+      prev === 0 ? Math.max(testimonials.length - itemsPerView, 0) : prev - 1
     );
   };
 
   const nextSlide = () => {
     setStartIndex((prev) =>
-      prev >= testimonials.length - 3 ? 0 : prev + 1
+      prev >= testimonials.length - itemsPerView ? 0 : prev + 1
     );
   };
 
@@ -58,9 +75,9 @@ export function TestimonialsSlider() {
           {"<"}
         </button>
 
-        {/* Reviews row */}
-        <div className="grid md:grid-cols-3 gap-6 flex-1">
-          {testimonials.slice(startIndex, startIndex + 3).map((t, i) => (
+        {/* Testimonials */}
+        <div className={`grid md:grid-cols-${itemsPerView} gap-6 flex-1`}>
+          {testimonials.slice(startIndex, startIndex + itemsPerView).map((t, i) => (
             <div
               key={i}
               className="bg-white rounded-xl shadow p-6 text-center"
