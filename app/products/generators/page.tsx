@@ -1,6 +1,10 @@
 "use client";
 
 import React from "react";
+import HeroImg from "@/image/generators-bg.png"
+import GeneratorImg1 from "@/image/generator-eyg6500ge.png"
+import GeneratorImg2 from "@/image/generator-ge3310.png"
+import GeneratorImg3 from "@/image/generator-eyg3900ge.png"
 
 export default function GeneratorsPage() {
   return (
@@ -8,7 +12,7 @@ export default function GeneratorsPage() {
       {/* HERO BANNER */}
       <section
         className="relative h-[300px] w-full bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/generators-bg.png')" }}
+        style={{ backgroundImage: `url(${HeroImg.src})` }}
       >
         <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white text-center">
           <h1 className="text-4xl font-bold">Generators</h1>
@@ -27,7 +31,7 @@ export default function GeneratorsPage() {
         {/* Generator EYG6500GE */}
         <div className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
           <img
-  src="/images/generator-eyg6500ge.png"
+         src={GeneratorImg1}
   alt="Generator EYG6500GE"
   className="md:w-1/2 w-full object-cover"
 />
@@ -68,7 +72,7 @@ export default function GeneratorsPage() {
         {/* Generator GE3310 — reversed layout */}
         <div className="bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row-reverse">
          <img
-    src="/images/generator-ge3310.png"
+         src={GeneratorImg2}
     alt="Generator GE3310"
     className="md:w-1/2 w-full max-h-[400px] object-contain"
   />
@@ -105,7 +109,7 @@ export default function GeneratorsPage() {
         {/* Generator EYG3900GE */}
         <div className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
          <img
-  src="/images/generator-eyg3900ge.png"
+         src={GeneratorImg3}
   alt="Generator EYG3900GE"
   className="md:w-1/2 w-full object-cover"
 />
