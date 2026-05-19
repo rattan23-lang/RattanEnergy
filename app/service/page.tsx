@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { ServiceEnquiryModal } from "@/components/ui/service-enquiry-modal";
 import { TestimonialsSlider } from "@/components/ui/testimonials";
+import HeroImg from "@/image/hero-bg.jpg"
 
 const ServicePage: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const ServicePage: React.FC = () => {
       {/* HERO SECTION */}
       <div className="relative w-full h-[500px]">
         <Image
-          src="/images/hero-bg.jpg"
+          src={HeroImg}
           alt="Hero Banner"
           fill
           className="object-cover"
