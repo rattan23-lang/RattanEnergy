@@ -89,29 +89,23 @@ const TyresPage: React.FC = () => {
           {/* Left side: bullet points */}
           <ul className="space-y-6 text-foreground text-lg md:text-xl leading-relaxed">
             <li className="flex items-center gap-3">
-              <FontAwesomeIcon icon={faShieldHalved} className="text-primary text-xl" />
               Superior safety and road grip in all terrains.
             </li>
             <li className="flex items-center gap-3">
-              <FontAwesomeIcon icon={faRoad} className="text-primary text-xl" />
               Smooth and quiet ride with advanced tread design.
             </li>
             <li className="flex items-center gap-3">
-              <FontAwesomeIcon icon={faRecycle} className="text-primary text-xl" />
               Eco‑friendly materials for reduced carbon footprint.
             </li>
             <li className="flex items-center gap-3">
-              <FontAwesomeIcon icon={faWrench} className="text-primary text-xl" />
               Long‑lasting durability with reinforced sidewalls.
             </li>
             {/* New point 1 */}
             <li className="flex items-center gap-3">
-              <FontAwesomeIcon icon={faCar} className="text-primary text-xl" />
               Wide range of tyres for every vehicle category.
             </li>
             {/* New point 2 */}
             <li className="flex items-center gap-3">
-              <FontAwesomeIcon icon={faMotorcycle} className="text-primary text-xl" />
               Trusted brand with decades of proven performance.
             </li>
           </ul>
