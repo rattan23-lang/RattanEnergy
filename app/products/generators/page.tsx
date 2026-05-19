@@ -31,10 +31,10 @@ export default function GeneratorsPage() {
         {/* Generator EYG6500GE */}
         <div className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
           <img
-         src={GeneratorImg1}
-  alt="Generator EYG6500GE"
-  className="md:w-1/2 w-full object-cover"
-/>
+          src={GeneratorImg1.src}
+          alt="Generator EYG6500GE"
+          className="md:w-1/2 w-full object-cover"
+          />
 
           <div className="p-6 flex-1 flex flex-col">
             <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
@@ -72,7 +72,7 @@ export default function GeneratorsPage() {
         {/* Generator GE3310 — reversed layout */}
         <div className="bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row-reverse">
          <img
-         src={GeneratorImg2}
+         src={GeneratorImg2.src}
     alt="Generator GE3310"
     className="md:w-1/2 w-full max-h-[400px] object-contain"
   />
@@ -109,7 +109,7 @@ export default function GeneratorsPage() {
         {/* Generator EYG3900GE */}
         <div className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
          <img
-         src={GeneratorImg3}
+         src={GeneratorImg3.src}
   alt="Generator EYG3900GE"
   className="md:w-1/2 w-full object-cover"
 />
