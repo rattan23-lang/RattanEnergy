@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import HeroImg from "@/image/tyres-hero.png"
 
 const TyresPage: React.FC = () => {
   return (
@@ -8,7 +9,7 @@ const TyresPage: React.FC = () => {
       {/* HERO SECTION */}
       <section
         className="hero relative h-[400px] w-full bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/tyres-hero.png')" }}
+        style={{ backgroundImage: "url({HeroImg})" }}
       >
         <div className="hero-content absolute inset-0 flex flex-col items-center justify-center bg-black/40 text-white text-center px-6">
           <h1 className="text-3xl md:text-4xl font-bold">MRF Tyres</h1>
