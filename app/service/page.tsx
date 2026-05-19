@@ -8,21 +8,27 @@ import HeroImg from "@/image/hero-bg.jpg"
 
 const ServicePage: React.FC = () => {
   return (
-    <div  className="service-page-theme">
+    <div className="service-page-theme">
       {/* HERO SECTION */}
-      <div className="relative w-full h-[500px]">
+      <div className="relative w-full overflow-hidden">
         <Image
-          src={HeroImg}
+                src={HeroImg}
           alt="Hero Banner"
-          fill
-          className="object-cover"
+          width={1920}
+          height={500}
+          className="object-cover w-full h-[500px]"
           priority
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-white">
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+        {/* Text Content */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center z-10 px-4">
+          <h1 className="text-3xl md:text-4xl font-bold">
             Why Choose Our Authorized Maruti Service Center?
           </h1>
-          <p className="mt-4 mb-6 text-lg text-white">
+          <p className="mt-4 mb-6 text-lg">
             Professional Care, Genuine Parts & Customer‑First Service
           </p>
           <a
