@@ -1,15 +1,6 @@
 "use client";
 
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMotorcycle,
-  faCar,
-  faWrench,
-  faShieldHalved,
-  faRoad,
-  faRecycle,
-} from "@fortawesome/free-solid-svg-icons";
 
 const TyresPage: React.FC = () => {
   return (
@@ -47,10 +38,6 @@ const TyresPage: React.FC = () => {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <div className="bg-card rounded-lg shadow p-6 text-center hover:-translate-y-1 transition">
-            <FontAwesomeIcon
-              icon={faMotorcycle}
-              className="text-primary text-3xl mb-4"
-            />
             <h3 className="text-xl font-semibold text-primary mb-2">
               2‑Wheeler & Scooter Tyres
             </h3>
@@ -60,7 +47,6 @@ const TyresPage: React.FC = () => {
           </div>
 
           <div className="bg-card rounded-lg shadow p-6 text-center hover:-translate-y-1 transition">
-            <FontAwesomeIcon icon={faCar} className="text-primary text-3xl mb-4" />
             <h3 className="text-xl font-semibold text-primary mb-2">
               Car & SUV Tyres
             </h3>
@@ -70,10 +56,6 @@ const TyresPage: React.FC = () => {
           </div>
 
           <div className="bg-card rounded-lg shadow p-6 text-center hover:-translate-y-1 transition">
-            <FontAwesomeIcon
-              icon={faWrench}
-              className="text-primary text-3xl mb-4"
-            />
             <h3 className="text-xl font-semibold text-primary mb-2">
               Wheel Alignment & Balancing
             </h3>
@@ -91,19 +73,15 @@ const TyresPage: React.FC = () => {
         </h2>
         <ul className="max-w-3xl mx-auto space-y-4 text-foreground">
           <li className="flex items-center gap-3">
-            <FontAwesomeIcon icon={faShieldHalved} className="text-primary" />
             Superior safety and road grip in all terrains.
           </li>
           <li className="flex items-center gap-3">
-            <FontAwesomeIcon icon={faRoad} className="text-primary" />
             Smooth and quiet ride with advanced tread design.
           </li>
           <li className="flex items-center gap-3">
-            <FontAwesomeIcon icon={faRecycle} className="text-primary" />
             Eco‑friendly materials for reduced carbon footprint.
           </li>
           <li className="flex items-center gap-3">
-            <FontAwesomeIcon icon={faWrench} className="text-primary" />
             Long‑lasting durability with reinforced sidewalls.
           </li>
         </ul>
