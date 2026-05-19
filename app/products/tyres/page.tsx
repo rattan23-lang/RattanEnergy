@@ -2,6 +2,19 @@
 
 import React from "react";
 import HeroImg from "@/image/tyres-hero.png"
+import TyreImg from "@/image/mechanic-tyre.jpeg"
+
+const TyreImage: React.FC = () => {
+  return (
+    <div className="flex justify-center">
+      <img
+        src={TyreImg.src}
+        alt="Mechanic fitting a tyre"
+        className="rounded-lg shadow-lg object-contain w-full max-w-md md:max-w-lg lg:max-w-xl h-auto"
+      />
+    </div>
+  );
+};
 
 const TyresPage: React.FC = () => {
   return (
@@ -72,20 +85,40 @@ const TyresPage: React.FC = () => {
         <h2 className="text-center text-2xl md:text-3xl font-bold mb-10">
           Why Choose MRF Tyres?
         </h2>
-        <ul className="max-w-3xl mx-auto space-y-4 text-foreground">
-          <li className="flex items-center gap-3">
-            Superior safety and road grip in all terrains.
-          </li>
-          <li className="flex items-center gap-3">
-            Smooth and quiet ride with advanced tread design.
-          </li>
-          <li className="flex items-center gap-3">
-            Eco‑friendly materials for reduced carbon footprint.
-          </li>
-          <li className="flex items-center gap-3">
-            Long‑lasting durability with reinforced sidewalls.
-          </li>
-        </ul>
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto items-center">
+          {/* Left side: bullet points */}
+          <ul className="space-y-6 text-foreground text-lg md:text-xl leading-relaxed">
+            <li className="flex items-center gap-3">
+              <FontAwesomeIcon icon={faShieldHalved} className="text-primary text-xl" />
+              Superior safety and road grip in all terrains.
+            </li>
+            <li className="flex items-center gap-3">
+              <FontAwesomeIcon icon={faRoad} className="text-primary text-xl" />
+              Smooth and quiet ride with advanced tread design.
+            </li>
+            <li className="flex items-center gap-3">
+              <FontAwesomeIcon icon={faRecycle} className="text-primary text-xl" />
+              Eco‑friendly materials for reduced carbon footprint.
+            </li>
+            <li className="flex items-center gap-3">
+              <FontAwesomeIcon icon={faWrench} className="text-primary text-xl" />
+              Long‑lasting durability with reinforced sidewalls.
+            </li>
+            {/* New point 1 */}
+            <li className="flex items-center gap-3">
+              <FontAwesomeIcon icon={faCar} className="text-primary text-xl" />
+              Wide range of tyres for every vehicle category.
+            </li>
+            {/* New point 2 */}
+            <li className="flex items-center gap-3">
+              <FontAwesomeIcon icon={faMotorcycle} className="text-primary text-xl" />
+              Trusted brand with decades of proven performance.
+            </li>
+          </ul>
+
+          {/* ✅ Right side: single image */}
+          <TyreImage />
+        </div>
       </section>
 
       {/* CTA SECTION */}
