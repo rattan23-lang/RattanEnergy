@@ -2,46 +2,57 @@
 
 import React from "react";
 import Image from "next/image";
-import { ServiceEnquiryModal } from "@/components/ui/service-enquiry-modal";
-import { TestimonialsSlider } from "@/components/ui/testimonials";
+import dynamic from "next/dynamic";
 import HeroImg from "@/image/hero-bg.jpg"
+
+import { ErrorBoundary } from "@/components/ui/error-boundary"; // ✅ import
+
+// Dynamic imports
+const ServiceEnquiryModal = dynamic(
+  () => import("@/components/ui/service-enquiry-modal").then((mod) => mod.ServiceEnquiryModal),
+  { ssr: false }
+);
+const TestimonialsSlider = dynamic(
+  () => import("@/components/ui/testimonials").then((mod) => mod.TestimonialsSlider),
+  { ssr: false }
+);
 
 const ServicePage: React.FC = () => {
   return (
     <div className="service-page-theme">
       {/* HERO SECTION */}
-      <div className="relative w-full overflow-hidden">
-        <Image
-                src={HeroImg}
-          alt="Hero Banner"
-          width={1920}
-          height={500}
-          className="object-cover w-full h-[500px]"
-          priority
-        />
+     {/* HERO SECTION */}
+<div className="relative w-full h-[500px]">
+  <Image
+    src={HeroImg}
+    alt="Hero Banner"
+    fill
+    className="object-cover"
+    priority
+  />
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
 
-        {/* Text Content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center z-10 px-4">
-          <h1 className="text-3xl md:text-4xl font-bold">
-            Why Choose Our Authorized Maruti Service Center?
-          </h1>
-          <p className="mt-4 mb-6 text-lg">
-            Professional Care, Genuine Parts & Customer‑First Service
-          </p>
-          <a
-            href="tel:+919876543210"
-            className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
-          >
-            Call Now
-          </a>
-        </div>
-      </div>
+  {/* Text Content */}
+  <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center z-20 px-4">
+    <h1 className="text-3xl md:text-4xl font-bold">
+      Why Choose Our Authorized Maruti Service Center?
+    </h1>
+    <p className="mt-4 mb-6 text-lg">
+      Professional Care, Genuine Parts & Customer‑First Service
+    </p>
+    <a
+      href="tel:+919876543210"
+      className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+    >
+      Call Now
+    </a>
+  </div>
+</div>
 
       {/* PROFESSIONAL EXCELLENCE */}
-      <section className="py-12 px-6">
+      <section className="py-12 px-6 relative z-20">
         <h2 className="text-center text-2xl md:text-3xl font-bold text-[#1e3a8a] mb-10">
           Professional Excellence
         </h2>
@@ -63,6 +74,7 @@ const ServicePage: React.FC = () => {
             </p>
           </div>
           <div className="bg-white rounded-lg shadow p-6 text-center hover:-translate-y-1 transition">
+            <FontAwesomeIcon icon={faBoxOpen} className="text-[#2563eb] w-12 h-12 mb-4 mx-auto" />
             <h3 className="text-xl font-semibold text-[#2563eb] mb-2">
               Genuine Spare Parts (MGP)
             </h3>
@@ -74,7 +86,7 @@ const ServicePage: React.FC = () => {
       </section>
 
       {/* COMPREHENSIVE SERVICE RANGE */}
-      <section className="py-12 px-6 bg-gray-50">
+      <section className="py-12 px-6 bg-gray-50 relative z-20">
         <h2 className="text-center text-2xl md:text-3xl font-bold text-[#1e3a8a] mb-10">
           Comprehensive Service Range
         </h2>
@@ -99,7 +111,7 @@ const ServicePage: React.FC = () => {
       </section>
 
       {/* CUSTOMER-CENTRIC FEATURES */}
-      <section className="py-12 px-6">
+      <section className="py-12 px-6 relative z-20">
         <h2 className="text-center text-2xl md:text-3xl font-bold text-[#1e3a8a] mb-10">
           Customer‑Centric Features
         </h2>
@@ -131,31 +143,36 @@ const ServicePage: React.FC = () => {
             </p>
           </div>
         </div>
-
-        {/* CONTACT */}
-        <section className="bg-gradient-to-r from-blue-50 to-blue-100 py-12 mt-12">
-          <div className="text-center">
-            <h3 className="text-xl font-semibold mb-4 text-[#1e3a8a]">
-              Visit Us in Sector 23, Chandigarh
-            </h3>
-            <p className="mb-4 text-[#334155]">
-              📞 Call us at{" "}
-              <a href="tel:9814008335" className="font-bold text-[#2563eb]">
-                9814008335
-              </a>{" "}
-              to book your slot or walk in today!
-            </p>
-            <div className="flex justify-center">
-              <div className="w-full max-w-2xl">
+      </section>
+      {/* CONTACT with Error Boundary */}
+      <section className="bg-gradient-to-r from-blue-50 to-blue-100 py-12 mt-12 relative z-30">
+        <div className="text-center">
+          <h3 className="text-xl font-semibold mb-4 text-[#1e3a8a]">
+            Visit Us in Sector 23, Chandigarh
+          </h3>
+          <p className="mb-4 text-[#334155]">
+            📞 Call us at{" "}
+            <a href="tel:9814008335" className="font-bold text-[#2563eb]">
+              9814008335
+            </a>{" "}
+            to book your slot or walk in today!
+          </p>
+          <div className="flex justify-center">
+            <div className="w-full max-w-2xl relative z-40">
+              <ErrorBoundary fallback={<div>Unable to load enquiry form.</div>}>
                 <ServiceEnquiryModal />
-              </div>
+              </ErrorBoundary>
             </div>
           </div>
-        </section>
+        </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <TestimonialsSlider />
+      {/* TESTIMONIALS with Error Boundary */}
+      <div className="relative z-40">
+        <ErrorBoundary fallback={<div>Testimonials unavailable right now.</div>}>
+          <TestimonialsSlider />
+        </ErrorBoundary>
+      </div>
     </div>
   );
 };
