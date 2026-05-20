@@ -7,6 +7,7 @@ import HeroImg from "@/image/hero-bg.jpg"
 
 import { ErrorBoundary } from "@/components/ui/error-boundary"; // ✅ import
 
+// Dynamic imports
 const ServiceEnquiryModal = dynamic(
   () => import("@/components/ui/service-enquiry-modal").then((mod) => mod.ServiceEnquiryModal),
   { ssr: false }
@@ -73,7 +74,6 @@ const ServicePage: React.FC = () => {
             </p>
           </div>
           <div className="bg-white rounded-lg shadow p-6 text-center hover:-translate-y-1 transition">
-            <FontAwesomeIcon icon={faBoxOpen} className="text-[#2563eb] w-12 h-12 mb-4 mx-auto" />
             <h3 className="text-xl font-semibold text-[#2563eb] mb-2">
               Genuine Spare Parts (MGP)
             </h3>
