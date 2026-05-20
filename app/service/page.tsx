@@ -7,7 +7,6 @@ import HeroImg from "@/image/hero-bg.jpg"
 
 import { ErrorBoundary } from "@/components/ui/error-boundary"; // ✅ import
 
-// Dynamic imports
 const ServiceEnquiryModal = dynamic(
   () => import("@/components/ui/service-enquiry-modal").then((mod) => mod.ServiceEnquiryModal),
   { ssr: false }
