@@ -4,7 +4,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ["drive.google.com", "lh3.googleusercontent.com", "images.unsplash.com"],
+    domains: ["drive.google.com", "lh3.googleusercontent.com", "images.unsplash.com", "ik.imagekit.io"],
     remotePatterns: [
       {
         protocol: "https",
@@ -16,7 +16,13 @@ const nextConfig = {
         hostname: "lh3.googleusercontent.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+        pathname: "/**",
+      },
     ],
+    qualities: [75, 100],
     unoptimized: true,
   },
   // Use trailing slash for consistent path handling
