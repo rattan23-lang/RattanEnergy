@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 
 interface ServiceEnquiryModalProps {
@@ -18,7 +18,7 @@ export function ServiceEnquiryModal({
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
 
@@ -36,24 +36,30 @@ export function ServiceEnquiryModal({
       ],
     };
 
-    try {
-      const res = await fetch(SHEETDB_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+  try {
+  const res = await fetch(SHEETDB_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
 
-      if (res.ok) {
-        setSubmitted(true);
-        toast.success("Enquiry submitted! Our team will contact you soon.");
-      } else {
-        toast.error("Submission failed. Please try again.");
-      }
-    } catch {
-      toast.error("Network error. Please check your connection.");
-    } finally {
-      setLoading(false);
+  if (res.ok) {
+    setSubmitted(true);
+    toast.success("Enquiry submitted! Our team will contact you soon.");
+
+    // ✅ Fire Google Ads conversion tracking
+    if (typeof window !== "undefined" && typeof (window as any).gtag_report_signup === "function") {
+      (window as any).gtag_report_signup();
     }
+  } else {
+    toast.error("Submission failed. Please try again.");
+  }
+} catch {
+  toast.error("Network error. Please check your connection.");
+} finally {
+  setLoading(false);
+}
+
   }
 
   return (
@@ -124,25 +130,36 @@ export function ServiceEnquiryModal({
                   />
                 </div>
 
-                {/* Requirement */}
-                <div className="flex items-center gap-4">
-                  <label htmlFor="enq-requirement" className="w-32 text-sm font-medium text-zinc-700">
-                    Requirement <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    id="enq-requirement"
-                    name="requirement"
-                    required
-                    defaultValue=""
-                    className={`${inputCls} w-full cursor-pointer`}
-                  >
-                    <option value="" disabled>
-                      Select Requirement
-                    </option>
-                    <option value="Maruti Car Services">Maruti Car Services</option>
-                    <option value="Tyre Replacement">Tyre Replacement</option>
-                  </select>
-                </div>
+               {/* Requirement */}
+{/* Requirement */}
+<div className="flex items-center gap-4">
+  <label
+    htmlFor="enq-requirement"
+    className="w-32 text-sm font-medium text-zinc-700 dark:text-zinc-200"
+  >
+    Requirement <span className="text-red-500">*</span>
+  </label>
+  <select
+    id="enq-requirement"
+    name="requirement"
+    required
+    defaultValue=""
+    className="rounded-lg border border-zinc-300 bg-zinc-50 px-4 py-2.5 text-sm
+               placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-orange-400
+               w-full cursor-pointer
+               dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
+  >
+    <option value="" disabled>
+      Select Requirement
+    </option>
+    <option value="Maruti Car Services">Maruti Car Services</option>
+    <option value="Tyre Replacement">Tyre Replacement</option>
+    <option value="Wheel Alignment">Wheel Alignment</option>
+    <option value="Battery Replacement">Battery Replacement</option>
+  </select>
+</div>
+
+
 
                 {/* Submit */}
                 <button

@@ -51,8 +51,7 @@ export function HeroSection() {
             fill
             priority={index === 0}
             className="object-cover object-center brightness-100"
-             sizes="100vw"
-            quality={100}
+            sizes="100vw"
           />
           </div>
           {/* <div className=" inset-0 " /> */}

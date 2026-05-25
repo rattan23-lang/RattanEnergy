@@ -5,9 +5,9 @@ import Image from "next/image";
 
 export function StorySection() {
   return (
-    <section className="bg-muted py-20">
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid gap-12 md:grid-cols-2 md:items-center">
+    <section className="bg-muted py-12 md:py-20">
+      <div className="container mx-auto max-w-6xl px-4">
+        <div className="grid gap-8 md:gap-12 md:grid-cols-2 md:items-center">
           <motion.div
             initial={{ x: -20, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -15,7 +15,7 @@ export function StorySection() {
             transition={{ duration: 0.5 }}
             className="text-center md:text-left"
           >
-            <h2 className="mb-6 text-3xl font-bold">Our Journey Towards Reliable Power</h2>
+            <h2 className="mb-4 md:mb-6 text-2xl md:text-3xl font-bold">Our Journey Towards Reliable Power</h2>
             <div className="space-y-4 text-muted-foreground">
           
               <p>
@@ -32,7 +32,7 @@ export function StorySection() {
             whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="relative mx-auto h-[400px] w-11/12 md:w-full max-w-[600px] overflow-hidden rounded-lg"
+            className="relative mx-auto h-[240px] sm:h-[320px] md:h-[400px] w-full max-w-[600px] overflow-hidden rounded-lg"
           >
             <Image
               src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070"

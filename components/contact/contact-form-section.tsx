@@ -11,9 +11,9 @@ export function ContactFormSection() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
   return (
-    <section ref={sectionRef} className="py-20">
+    <section ref={sectionRef} className="py-12 md:py-20">
       <div className="container mx-auto max-w-6xl px-4">
-        <div className="grid gap-12 md:grid-cols-2">
+        <div className="grid gap-8 md:gap-12 md:grid-cols-2">
           <motion.div
             initial={{ x: -20, opacity: 0 }}
             animate={isInView ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}

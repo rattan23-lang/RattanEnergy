@@ -43,7 +43,7 @@ const formFields = [
     name: "phone",
     label: "Phone",
     placeholder: "Enter your contact number",
-    type: "number",
+    type: "tel",
   },
   {
     name: "message",

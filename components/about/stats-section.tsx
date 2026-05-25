@@ -43,9 +43,9 @@ export function StatsSection() {
   });
 
   return (
-    <section className="py-20" ref={ref}>
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
+    <section className="py-12 md:py-20" ref={ref}>
+      <div className="container mx-auto max-w-6xl px-4">
+        <div className="grid grid-cols-2 gap-4 md:gap-8 md:grid-cols-4">
           {stats.map((stat, index) => (
             <motion.div
               key={index}

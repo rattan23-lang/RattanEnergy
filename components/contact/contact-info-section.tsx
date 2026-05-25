@@ -8,7 +8,7 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    content: "+91-7888733548 , +91-7888733548",
+    content: "+91-9814008335",
   },
   {
     icon: Mail,
@@ -53,7 +53,7 @@ const item = {
 
 export function ContactInfoSection() {
   return (
-    <section className="bg-muted py-20">
+    <section className="bg-muted py-12 md:py-20">
       <div className="container mx-auto max-w-6xl px-4">
         <motion.div
           initial={{ y: 20, opacity: 0 }}
@@ -61,8 +61,8 @@ export function ContactInfoSection() {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <h1 className="mb-4 text-4xl font-bold">Contact Us</h1>
-          <p className="mx-auto mb-12 max-w-2xl text-muted-foreground">
+          <h1 className="mb-4 text-2xl md:text-4xl font-bold">Contact Us</h1>
+          <p className="mx-auto mb-8 md:mb-12 max-w-2xl text-sm md:text-base text-muted-foreground">
             Have questions? We&apos;re here to help. Reach out to us through any of
             the channels below or fill out the contact form.
           </p>
@@ -72,7 +72,7 @@ export function ContactInfoSection() {
           variants={container}
           initial="hidden"
           animate="show"
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4"
         >
           {contactInfo.map((info, index) => (
             <motion.div
@@ -81,12 +81,12 @@ export function ContactInfoSection() {
               className="group"
             >
               <Card className="h-full transition-all duration-300 hover:shadow-lg">
-                <CardContent className="flex flex-col items-center p-6 text-center">
-                  <div className="mb-4 rounded-full bg-primary/10 p-3">
-                    <info.icon className="h-6 w-6 text-primary transition-transform duration-300 group-hover:scale-110" />
+                <CardContent className="flex flex-col items-center p-4 md:p-6 text-center">
+                  <div className="mb-3 md:mb-4 rounded-full bg-primary/10 p-2 md:p-3">
+                    <info.icon className="h-5 w-5 md:h-6 md:w-6 text-primary transition-transform duration-300 group-hover:scale-110" />
                   </div>
-                  <h3 className="mb-2 font-semibold">{info.title}</h3>
-                  <p className="text-sm text-muted-foreground">{info.content}</p>
+                  <h3 className="mb-1 md:mb-2 text-sm md:text-base font-semibold">{info.title}</h3>
+                  <p className="text-xs md:text-sm text-muted-foreground break-words">{info.content}</p>
                 </CardContent>
               </Card>
             </motion.div>
