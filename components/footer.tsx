@@ -77,4 +77,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}for footer sir alignment fixed
+}
