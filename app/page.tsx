@@ -75,8 +75,8 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-20">
-        <div className="container mx-auto max-w-[1400px] px-8">
+      <section className="py-12 md:py-20">
+        <div className="container mx-auto max-w-[1400px] px-4 md:px-8">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -84,8 +84,8 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold">About Rattan Energy</h2>
-            <p className="mx-auto max-w-2xl text-muted-foreground">
+            <h2 className="mb-4 text-2xl md:text-3xl font-bold">About Rattan Energy</h2>
+            <p className="mx-auto max-w-2xl text-sm md:text-base text-muted-foreground">
             At Rattan Energy, we are committed to delivering top-quality generators in commercial as well as residential sector across India. With a strong focus on performance, durability, and innovation, we provide power solutions that keep your world running without interruption. <br />From sales to expert installation, maintenance, and repairs, our team ensures you get the best service and support. Whether for commercial or residential use, we help you find the perfect generator to match your needs. Reliable power starts here! ⚡
             </p>
           </motion.div>
@@ -93,9 +93,9 @@ export default function Home() {
       </section>
 
       {/* Product Categories */}
-      <section className="bg-muted py-20">
-        <div className="container mx-auto max-w-[1400px] px-8">
-          <h2 className="mb-12 text-center text-3xl font-bold">Our Solutions</h2>
+      <section className="bg-muted py-12 md:py-20">
+        <div className="container mx-auto max-w-[1400px] px-4 md:px-8">
+          <h2 className="mb-8 md:mb-12 text-center text-2xl md:text-3xl font-bold">Our Solutions</h2>
           <div className="grid gap-8 md:grid-cols-2">
             {productCategories.map((category, index) => (
               <motion.div
@@ -135,9 +135,9 @@ export default function Home() {
      </section> */}
      
       {/* Testimonials */}
-      <section className="py-20">
-        <div className="container mx-auto max-w-[1400px] px-8">
-          <h2 className="mb-12 text-center text-3xl font-bold">What Our Clients Say</h2>
+      <section className="py-12 md:py-20">
+        <div className="container mx-auto max-w-[1400px] px-4 md:px-8">
+          <h2 className="mb-8 md:mb-12 text-center text-2xl md:text-3xl font-bold">What Our Clients Say</h2>
         </div>
         <div className="relative">
           <Marquee
@@ -146,9 +146,9 @@ export default function Home() {
             pauseOnHover={true}
             className="py-4"
           >
-            <div className="flex gap-6">
+            <div className="flex gap-4 md:gap-6">
               {[...testimonials, ...testimonials].map((testimonial, index) => (
-                <Card key={index} className="testimonial-card w-[400px] flex-shrink-0">
+                <Card key={index} className="testimonial-card w-[280px] sm:w-[340px] md:w-[400px] flex-shrink-0">
                   <CardContent className="flex flex-col items-center p-6 text-center">
                     <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-full">
                       <Image

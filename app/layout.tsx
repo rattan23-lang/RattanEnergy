@@ -1,5 +1,5 @@
 import './globals.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Jost } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -8,14 +8,18 @@ import Footer from '@/components/footer';
 import { Toaster } from '@/components/ui/sonner';
 import MarqueeAnnouncement from '@/components/marquee-announcement';
 import Script from 'next/script';
-import Image from 'next/image';
-import Head from 'next/head';
 
 const jost = Jost({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-jost',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
 
 export const metadata: Metadata = {
   title: 'Rattan Energy - Generators',
@@ -32,11 +36,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <Head>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
+      <body className={`${jost.variable} font-jost`}>
         {/* Noscript fallback for Facebook Pixel */}
         <noscript>
-          <Image
+          <img
             height="1"
             width="1"
             style={{ display: 'none' }}
@@ -44,19 +48,20 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
-      </Head>
-      <body className={`${jost.variable} font-jost`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+     <ThemeProvider
+  attribute="class"
+  defaultTheme="light"
+  enableSystem={false}
+  disableTransitionOnChange
+>
+
+
           <MarqueeAnnouncement />
           <Header />
-          <main className="min-h-screen">{children}</main>
+          <main className="min-h-screen min-h-dvh">{children}</main>
           <Footer />
           <Toaster />
+          <GoogleAnalytics gaId="G-JGFQ9RXWXK" />
         </ThemeProvider>
 
         {/* Facebook Pixel Script */}
@@ -78,6 +83,13 @@ export default function RootLayout({
             `,
           }}
         />
+<Script id="force-light" strategy="beforeInteractive">
+  {`
+    try {
+      localStorage.removeItem('theme'); // clear any saved theme
+    } catch (e) {}
+  `}
+</Script>
 
         {/* Google Ads Global Tag */}
         <Script
@@ -97,11 +109,45 @@ export default function RootLayout({
             `,
           }}
         />
+          {/* Sign-up tracking */}
+        <Script id="signup-tracking" strategy="afterInteractive">
+          {`
+            function gtag_report_signup(url) {
+              var callback = function () {
+                if (typeof(url) != 'undefined') {
+                  window.location = url;
+                }
+              };
+              gtag('event', 'conversion', {
+                  'send_to': 'AW-10941887411/gTzbCPfw_a8cELPnv-Eo',
+                  'value': 1.0,
+                  'currency': 'INR',
+                  'event_callback': callback
+              });
+              return false;
+            }
+          `}
+        </Script>
+        {/* Call Now tracking */}
+        <Script id="call-tracking" strategy="afterInteractive">
+          {`
+            function gtag_report_call(url) {
+              var callback = function () {
+                if (typeof(url) != 'undefined') {
+                  window.location = url;
+                }
+              };
+              gtag('event', 'conversion', {
+                  'send_to': 'AW-10941887411/2c-rCPTw_a8cELPnv-Eo',
+                  'value': 1.0,
+                  'currency': 'INR',
+                  'event_callback': callback
+              });
+              return false;
+            }
+          `}
+        </Script>
       </body>
-
-
-
-      <GoogleAnalytics gaId="G-JGFQ9RXWXK" />
     </html>
   );
 }

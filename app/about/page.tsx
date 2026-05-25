@@ -14,31 +14,29 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[400px]">
+      <section className="relative h-[280px] sm:h-[350px] md:h-[400px]">
         <Image
           src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=2070"
           alt="About Us"
           fill
           className="object-cover brightness-50"
         />
-        <div className="absolute inset-0 flex items-center justify-center text-white">
+        <div className="absolute inset-0 flex items-center justify-center text-white px-4">
           <div className="text-center">
-            <div className="mb-4 text-5xl font-bold">
+            <div className="mb-4 text-3xl sm:text-4xl md:text-5xl font-bold">
             <MotionH1
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              
             >
               About Rattan Energy
             </MotionH1>
             </div>
-            <div className="text-xl">
+            <div className="text-base md:text-xl">
             <MotionP
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              
             >
               Powering Progress Since 1995
             </MotionP>

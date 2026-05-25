@@ -22,7 +22,7 @@ function getImageUrl(url: string) {
 
 function getWhatsAppLink(productName: string) {
   const message = encodeURIComponent(`Hi, I'm interested in ${productName}`);
-  return `https://wa.me/917888733548?text=${message}`;
+  return `https://wa.me/919814008335?text=${message}`;
 }
 
 // Fix the type definition to match what Vercel's Next.js expects

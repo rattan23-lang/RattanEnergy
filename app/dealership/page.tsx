@@ -156,7 +156,7 @@ export default function DealershipPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-muted py-20">
+      <section className="bg-muted py-12 md:py-20">
         <div className="container mx-auto max-w-6xl px-4">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -164,7 +164,7 @@ export default function DealershipPage() {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <h1 className="mb-4 text-4xl font-bold">Become a Dealer</h1>
+            <h1 className="mb-4 text-2xl md:text-4xl font-bold">Become a Dealer</h1>
             <p className="mx-auto max-w-2xl text-muted-foreground">
               Join our network of successful dealers and grow your business with Rattan Energy.
               We provide comprehensive support to help you succeed in the power generation industry.
@@ -174,9 +174,9 @@ export default function DealershipPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="container mx-auto max-w-6xl px-4">
-          <h2 className="mb-12 text-center text-3xl font-bold">Dealer Benefits</h2>
+          <h2 className="mb-8 md:mb-12 text-center text-2xl md:text-3xl font-bold">Dealer Benefits</h2>
           <motion.div
             variants={container}
             initial="hidden"
@@ -208,9 +208,9 @@ export default function DealershipPage() {
       </section>
 
       {/* Application Form */}
-      <section className="bg-muted py-20" ref={formRef}>
+      <section className="bg-muted py-12 md:py-20" ref={formRef}>
         <div className="container mx-auto max-w-2xl px-4">
-          <h2 className="mb-8 text-center text-3xl font-bold">Dealership Application</h2>
+          <h2 className="mb-6 md:mb-8 text-center text-2xl md:text-3xl font-bold">Dealership Application</h2>
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={isFormInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}

@@ -24,6 +24,9 @@
     --input: 0 0% 89.8%;
     --ring: 0 72% 51%;
     --radius: 0.75rem;
+  }
+
+  html[data-scroll-behavior="smooth"] {
     scroll-behavior: smooth;
   }
 
@@ -129,4 +132,7 @@
 
 .testimonial-card {
   @apply rounded-lg bg-card p-6 shadow-md transition-all duration-300 hover:shadow-xl;
+}select option {
+  background-color: #1f2937; /* Tailwind gray-800 */
+  color: #fff;
 }
