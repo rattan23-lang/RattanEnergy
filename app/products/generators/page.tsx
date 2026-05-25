@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import GeneratorsBgImg from "@/image/generators-bg.png";
+import GeneratorsBgImg from "@/image/gen_bg.jpeg";
 import GeneratorEYG6500GE from "@/image/generator-eyg6500ge.png";
 import GeneratorGE3310 from "@/image/generator-ge3310.png";
 import GeneratorEYG3900 from "@/image/generator-eyg3900.png";
