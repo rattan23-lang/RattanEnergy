@@ -65,13 +65,16 @@ export default function Header() {
             
 
 
-            <Button
-              variant="secondary"
-              asChild
-              className="font-semibold hidden md:inline-flex"
-            >
-              <Link href="/dealership">Become a Dealer</Link>
-            </Button>
+            <div className="hidden md:flex items-center gap-3">
+              <span className="text-[11px] font-medium text-black dark:text-white">GSTIN: 04ADGPA1811N1ZZ</span>
+              <Button
+                variant="secondary"
+                asChild
+                className="font-semibold"
+              >
+                <Link href="/dealership">Become a Dealer</Link>
+              </Button>
+            </div>
 
             {/* Desktop-only Call Now button that opens popup */}
             {/* Desktop-only Call Now button that opens popup */}
