@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+
 import {
   Settings2,
   Monitor,
@@ -17,11 +18,9 @@ import {
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import HeroBgImg from "@/image/hero-bg.jpg";
 
+import { EnquiryEmailForm } from "@/components/ui/enquiry-email-form";
+
 // Dynamic imports
-const ServiceEnquiryModal = dynamic(
-  () => import("@/components/ui/service-enquiry-modal").then((mod) => mod.ServiceEnquiryModal),
-  { ssr: false }
-);
 const TestimonialsSlider = dynamic(
   () => import("@/components/ui/testimonials").then((mod) => mod.TestimonialsSlider),
   { ssr: false }
@@ -36,6 +35,7 @@ const ServicePage: React.FC = () => {
           src={HeroBgImg}
           alt="Hero Banner"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />
@@ -192,7 +192,7 @@ const ServicePage: React.FC = () => {
           <div className="flex justify-center">
             <div className="w-full max-w-2xl relative z-40">
               <ErrorBoundary fallback={<div>Unable to load enquiry form.</div>}>
-                <ServiceEnquiryModal />
+                <EnquiryEmailForm productName="Maruti Car Services" />
               </ErrorBoundary>
             </div>
           </div>
