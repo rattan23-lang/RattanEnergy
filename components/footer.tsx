@@ -43,7 +43,6 @@ export default function Footer() {
               <li><Link href="/contact" className="text-sm text-muted-foreground hover:text-primary">Contact</Link></li>
               <li><Link href="/privacypolicy" className="text-sm text-muted-foreground hover:text-primary">Privacy Policy</Link></li>
               <li><Link href="/dealership" className="text-sm text-muted-foreground hover:text-primary">Become a Dealer</Link></li>
-              <li><span className="text-sm text-muted-foreground">GSTIN: 04ADGPA1811N1ZZ</span></li>
             </ul>
           </div>
 
