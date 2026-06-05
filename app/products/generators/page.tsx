@@ -2,10 +2,11 @@
 
 import React from "react";
 import Image from "next/image";
-import GeneratorsBgImg from "@/image/gen_bg.jpeg";
+import GeneratorsBgImg from "@/image/generators-bg.png";
 import GeneratorEYG6500GE from "@/image/generator-eyg6500ge.png";
-import GeneratorGE3310 from "@/image/gen2_img.jpeg";
+import GeneratorGE3310 from "@/image/generator-ge3310.png";
 import GeneratorEYG3900 from "@/image/generator-eyg3900.png";
+import GeneratorRE8500 from "@/image/generator-re8500.png";
 
 export default function GeneratorsPage() {
   return (
@@ -16,6 +17,7 @@ export default function GeneratorsPage() {
           src={GeneratorsBgImg}
           alt="Generators Banner"
           fill
+          sizes="100vw"
           className="object-cover object-center"
           priority
         />
@@ -40,6 +42,7 @@ export default function GeneratorsPage() {
               src={GeneratorEYG6500GE}
               alt="Generator EYG6500GE"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
           </div>
@@ -89,6 +92,7 @@ export default function GeneratorsPage() {
               src={GeneratorGE3310}
               alt="Generator GE3310"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
           </div>
@@ -134,6 +138,7 @@ export default function GeneratorsPage() {
               src={GeneratorEYG3900}
               alt="Generator EYG3900GE"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
           </div>
@@ -174,6 +179,53 @@ export default function GeneratorsPage() {
             </a>
           </div>
         </div>
+        {/* Generator RE8500 — reversed layout */}
+        <div className="bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row-reverse">
+          <div className="relative md:w-1/2 w-full min-h-[220px] md:min-h-[260px]">
+            <Image
+              src={GeneratorRE8500}
+              alt="Generator RE 8500"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="p-6 flex-1 flex flex-col">
+            <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+              Generator RE 9500
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              High-performance industrial generator for heavy-duty continuous power supply.
+            </p>
+            <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1 flex-1">
+              <li>Max power: 8500W</li>
+              <li>Rated power: 8000W</li>
+              <li>Rated Voltage: 220V</li>
+              <li>Frequency: 50Hz</li>
+              <li>Motor type: Brush motor, single phase</li>
+              <li>Engine type: Single cylinder, OHV, 4-stroke, air cooled, gasoline engine</li>
+              <li>Displacement: 500CC</li>
+              <li>Power/Speed(kw/r/min): 9.6/3000</li>
+              <li>Fuel tank: 25 litres</li>
+              <li>Continuous working hours: 8h (@full load)</li>
+              <li>Starting system: Recoil / Electric start</li>
+              <li>Dimensions: 680 × 515 × 535 mm</li>
+              <li>Wheels and handles</li>
+            </ul>
+            <a
+              href="tel:+919814008335"
+              onClick={() => {
+                if (typeof window !== "undefined" && typeof (window as any).gtag_report_call === "function") {
+                  (window as any).gtag_report_call("tel:+919814008335");
+                }
+              }}
+              className="mt-4 inline-block text-center px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+            >
+              Call Now
+            </a>
+          </div>
+        </div>
+
       </section>
     </div>
   );
