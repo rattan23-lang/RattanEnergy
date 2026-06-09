@@ -6,7 +6,7 @@ import GeneratorsBgImg from "@/image/generators-bg.png";
 import GeneratorEYG6500GE from "@/image/generator-eyg6500ge.png";
 import GeneratorGE3310 from "@/image/generator-ge3310.png";
 import GeneratorEYG3900 from "@/image/generator-eyg3900.png";
-import GeneratorRE8500 from "@/image/generator-re8500.jpeg";
+import GeneratorRE8500 from "@/image/generator-re8500.jpg";
 
 export default function GeneratorsPage() {
   return (
