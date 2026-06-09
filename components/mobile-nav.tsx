@@ -131,6 +131,7 @@ export function MobileNav({ isOpen, onOpenChange }: MobileNavProps) {
           >
             Blogs
           </Link>
+          <span className="text-xs font-medium text-black dark:text-white">GSTIN: 04ADGPA1811N1ZZ</span>
           <Button
             variant="secondary"
             asChild
