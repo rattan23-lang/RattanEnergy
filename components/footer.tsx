@@ -54,7 +54,7 @@ export default function Footer() {
               <li className="text-sm text-muted-foreground">Sector 23, Chandigarh</li>
               <li className="text-sm text-muted-foreground">+91-9814008335</li>
               <li className="text-sm text-muted-foreground break-words max-w-[200px] mx-auto">
-                RattanEnergyindia@gmail.com
+                rattanenergyindia@gmail.com
               </li>
             </ul>
           </div>
