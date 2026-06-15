@@ -17,7 +17,7 @@ function getImageUrl(url: string) {
   if (!idMatch) return url;
 
   const fileId = idMatch[0];
-  return `https://lh3.googleusercontent.com/d/${fileId}`;
+  return `https://lh3.googleusercontent.com/d/${fileId}=w1000`;
 }
 
 function getWhatsAppLink(productName: string) {

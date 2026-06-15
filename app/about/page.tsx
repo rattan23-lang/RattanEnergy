@@ -16,7 +16,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative h-[280px] sm:h-[350px] md:h-[400px]">
         <Image
-          src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=2070"
+          src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=70&w=1600"
           alt="About Us"
           fill
           className="object-cover brightness-50"

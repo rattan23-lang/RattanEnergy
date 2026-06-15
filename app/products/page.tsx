@@ -24,7 +24,7 @@ function getImageUrl(url: string) {
   if (!idMatch) return url;
   
   const fileId = idMatch[0];
-  return `https://lh3.googleusercontent.com/d/${fileId}`;
+  return `https://lh3.googleusercontent.com/d/${fileId}=w600`;
 }
 
 export default function ProductsPage() {
@@ -71,7 +71,7 @@ export default function ProductsPage() {
       <section className="relative w-full ">
       <div className="aspect-[16/9] sm:aspect-[21/9] md:aspect-[21/8] lg:aspect-[21/7] w-full">
         <Image
-          src="https://ik.imagekit.io/0ilh5c8tu/hero1.jpg?updatedAt=1741866821559"
+          src="https://ik.imagekit.io/0ilh5c8tu/hero1.jpg?updatedAt=1741866821559&tr=w-1920"
           alt="Products-RattanEnergy"
           fill
           className="object-cover brightness-100"
@@ -256,7 +256,7 @@ export default function ProductsPage() {
 //       <section className="relative w-full ">
 //       <div className="aspect-[16/9] sm:aspect-[21/9] md:aspect-[21/8] lg:aspect-[21/7] w-full">
 //         <Image
-//           src="https://ik.imagekit.io/0ilh5c8tu/hero1.jpg?updatedAt=1741866821559"
+//           src="https://ik.imagekit.io/0ilh5c8tu/hero1.jpg?updatedAt=1741866821559&tr=w-1920"
 //           alt="Products-RattanEnergy"
 //           fill
 //           className="object-cover brightness-100"

@@ -15,13 +15,13 @@ import Newsletter from "@/components/home/newsletter";
 const productCategories = [
   {
     title: "Commercial Generators",
-    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=70&w=800",
     description: "Reliable power solutions for businesses and industries.",
   },
-  
+
   {
     title: "Residential Generators",
-    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=70&w=800",
     description: "Uninterrupted backup power for your home’s comfort.",
   },
 ];
@@ -31,35 +31,35 @@ const testimonials = [
     name: "Suman Verma",
     company: "VLKT Steels & Co.",
     content: "Rattan Energy has transformed our operations with their reliable power solutions.",
-    image: "https://plus.unsplash.com/premium_photo-1661964243697-734d7bd664ff?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://plus.unsplash.com/premium_photo-1661964243697-734d7bd664ff?q=60&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     role: "CEO",
   },
   {
     name: "Gagandeep Singh",
     company: "Bhullar Machines",
     content: "Outstanding service and top-notch products. Highly recommended!",
-    image: "https://images.unsplash.com/photo-1534339480783-6816b68be29c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://images.unsplash.com/photo-1534339480783-6816b68be29c?q=60&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     role: "Operations Director",
   },
   {
     name: "Rajesh Sharma",
     company: "Jai Ambe Motors",
     content: "The best industrial generator provider we've worked with.",
-    image: "https://images.unsplash.com/photo-1530268729831-4b0b9e170218?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://images.unsplash.com/photo-1530268729831-4b0b9e170218?q=60&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     role: "Technical Manager",
   },
   {
     name: "Diksha Thakur",
     company: "Chemma Motors",
     content: "Exceptional quality and reliability. A trusted partner for our power needs.",
-    image: "https://images.unsplash.com/photo-1624610261655-777af2f586d7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGluZGlhbiUyMGdpcmx8ZW58MHx8MHx8fDA%3D",
+    image: "https://images.unsplash.com/photo-1624610261655-777af2f586d7?w=200&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGluZGlhbiUyMGdpcmx8ZW58MHx8MHx8fDA%3D",
     role: "Production Manager",
   },
   {
     name: "Dhruv Chopra",
     company: "Shivalik Automobiles",
     content: "Professional team and excellent after-sales support.",
-    image: "https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5kaWFuJTIwbWFufGVufDB8fDB8fHww",
+    image: "https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?w=200&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5kaWFuJTIwbWFufGVufDB8fDB8fHww",
     role: "Facility Manager",
   },
 ];
