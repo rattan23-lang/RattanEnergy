@@ -35,7 +35,7 @@ export function StorySection() {
             className="relative mx-auto h-[240px] sm:h-[320px] md:h-[400px] w-full max-w-[600px] overflow-hidden rounded-lg"
           >
             <Image
-              src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070"
+              src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=70&w=800"
               alt="Our History"
               fill
               className="object-cover"

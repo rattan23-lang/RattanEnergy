@@ -8,17 +8,17 @@ const teamMembers = [
   {
     name: "Rahul Aggarwal",
     role: "CEO",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2069",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=70&w=600",
   },
   {
     name: "Emily Chen",
     role: "Head of Engineering",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2076",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=70&w=600",
   },
   {
     name: "Michael Brown",
     role: "Operations Director",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=70&w=600",
   },
 ];
 

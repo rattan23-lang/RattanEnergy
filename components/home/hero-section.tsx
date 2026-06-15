@@ -11,7 +11,7 @@ export function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const heroSlides = [
     {
-      image: "https://ik.imagekit.io/0ilh5c8tu/hero1.jpg?updatedAt=1741866821559",
+      image: "https://ik.imagekit.io/0ilh5c8tu/hero1.jpg?updatedAt=1741866821559&tr=w-1920",
       // title: "Powering Progress",
       // subtitle: "Industrial Solutions for a Sustainable Future",
       // cta: "Explore Products",
@@ -19,7 +19,7 @@ export function HeroSection() {
     },
     
     {
-      image: "https://ik.imagekit.io/0ilh5c8tu/hero2.jpg?updatedAt=1741866821770",
+      image: "https://ik.imagekit.io/0ilh5c8tu/hero2.jpg?updatedAt=1741866821770&tr=w-1920",
       // title: "Innovation First",
       // subtitle: "Leading the Future of Power Generation",
       // cta: "Learn More",
