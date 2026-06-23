@@ -7,6 +7,7 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { Toaster } from '@/components/ui/sonner';
 import MarqueeAnnouncement from '@/components/marquee-announcement';
+import { WhatsAppWidget } from '@/components/whatsapp-widget';
 import Script from 'next/script';
 
 const jost = Jost({
@@ -61,6 +62,7 @@ export default function RootLayout({
           <main className="min-h-screen min-h-dvh">{children}</main>
           <Footer />
           <Toaster />
+          <WhatsAppWidget />
           <GoogleAnalytics gaId="G-JGFQ9RXWXK" />
         </ThemeProvider>
 
